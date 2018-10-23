@@ -1,4 +1,4 @@
-# CodigoFrida
+# CodigoFrida Aplicación Cliente
 
 Pasos para inicializar proyecto CodigoFridas.
 
