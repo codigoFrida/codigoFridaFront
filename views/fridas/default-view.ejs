@@ -12,8 +12,14 @@
 </head>
 <body>
 
-    <%- include('partials/header') %>
-    <%- include(section + '/index') %>    
+    <%- include('partials/header') %>`
+
+    <% if (typeof subsection !== 'undefined') { %>
+        <%- include(subsection + '/index') %>    
+    <% } else { %>
+        <%- include(section + '/index') %>    
+    <% } %>
+
     <%- include('partials/footer') %>
 
     <script src="/js/jquery-3.3.1.min.js"></script>
