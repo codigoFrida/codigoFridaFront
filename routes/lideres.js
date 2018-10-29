@@ -94,7 +94,7 @@ router.get('/modulos/:id', function(req, res, next) {
     subsection: 'modulo',
     idModulo: id,
     headerFile: 'header',
-    cssFiles: [],
+    cssFiles: ['modulo/modulo'],
     jsFiles: []
   }
   res.render('lideres/default-view', options);
