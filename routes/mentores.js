@@ -7,6 +7,7 @@ router.get('/registro', function(req, res, next) {
     baseUrl: 'http://' + req.get('host'),
     title: 'Mentores - Registro', 
     section: 'registro',
+    headerFile: 'headerLogin',
     cssFiles: ['login/login'],
     jsFiles: ['bootstrap/bootstrap-filestyle.min']
   }
@@ -27,9 +28,10 @@ router.get('/inicio-sesion', function(req, res, next) {
 
 router.get('/mis-equipos', function(req, res, next) {
   const options = {
-    baseUrl: req.get('host'),
+    baseUrl: 'http://' + req.get('host'),
     title: 'Mentores - Mis equipos', 
     section: 'mis-equipos',
+    headerFile: 'header',
     cssFiles: [],
     jsFiles: []
   }
@@ -37,10 +39,14 @@ router.get('/mis-equipos', function(req, res, next) {
 });
 
 router.get('/mis-equipos/:equipo', function(req, res, next) {
+  const { equipo } = req.params;
   const options = {
-    baseUrl: req.get('host'),
+    baseUrl: 'http://' + req.get('host'),
     title: 'Mentores - Mis equipos', 
     section: 'mis-equipos',
+    subsection: 'equipo',
+    idEquipo: equipo,
+    headerFile: 'header',
     cssFiles: [],
     jsFiles: []
   }
@@ -48,13 +54,15 @@ router.get('/mis-equipos/:equipo', function(req, res, next) {
 });
 
 router.get('/mis-equipos/:equipo/modulos/:id', function(req, res, next) {
-  const { id } = req.params;
+  const { equipo, id } = req.params;
   const options = {
-    baseUrl: req.get('host'),
+    baseUrl: 'http://' + req.get('host'),
     title: 'Mentores - Módulo', 
-    section: 'modulos',
+    section: 'mis-equipos',
     subsection: 'modulo',
+    idEquipo: equipo,
     idModulo: id,
+    headerFile: 'header',
     cssFiles: [],
     jsFiles: []
   }
@@ -63,9 +71,10 @@ router.get('/mis-equipos/:equipo/modulos/:id', function(req, res, next) {
 
 router.get('/contenido-adicional', function(req, res, next) {
   const options = {
-    baseUrl: req.get('host'),
+    baseUrl: 'http://' + req.get('host'),
     title: 'Mentores - Contenido adicional', 
     section: 'contenido-adicional',
+    headerFile: 'header',
     cssFiles: [],
     jsFiles: []
   }
@@ -74,9 +83,10 @@ router.get('/contenido-adicional', function(req, res, next) {
 
 router.get('/mi-perfil', function(req, res, next) {
   const options = {
-    baseUrl: req.get('host'),
+    baseUrl: 'http://' + req.get('host'),
     title: 'Mentores - Mi perfil', 
     section: 'mi-perfil',
+    headerFile: 'header',
     cssFiles: [],
     jsFiles: []
   }
