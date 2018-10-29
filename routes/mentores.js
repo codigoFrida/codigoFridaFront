@@ -2,6 +2,29 @@ var express = require('express');
 var router = express.Router();
 
 /* GET Mentores listing. */
+router.get('/registro', function(req, res, next) {
+  const options = {
+    baseUrl: 'http://' + req.get('host'),
+    title: 'Mentores - Registro', 
+    section: 'registro',
+    cssFiles: ['login/login'],
+    jsFiles: ['bootstrap/bootstrap-filestyle.min']
+  }
+  res.render('mentores/default-view', options);
+});
+
+router.get('/inicio-sesion', function(req, res, next) {
+  const options = {
+    baseUrl: 'http://' + req.get('host'),
+    title: 'Mentores - Inicio de sesión', 
+    section: 'inicio-sesion',
+    headerFile: 'headerLogin',
+    cssFiles: [],
+    jsFiles: []
+  }
+  res.render('mentores/default-view', options);
+});
+
 router.get('/mis-equipos', function(req, res, next) {
   const options = {
     baseUrl: req.get('host'),
@@ -18,17 +41,6 @@ router.get('/mis-equipos/:equipo', function(req, res, next) {
     baseUrl: req.get('host'),
     title: 'Mentores - Mis equipos', 
     section: 'mis-equipos',
-    cssFiles: [],
-    jsFiles: []
-  }
-  res.render('mentores/default-view', options);
-});
-
-router.get('/mis-equipos/:equipo/modulos', function(req, res, next) {
-  const options = {
-    baseUrl: req.get('host'),
-    title: 'Mentores - Módulos', 
-    section: 'modulos',
     cssFiles: [],
     jsFiles: []
   }
