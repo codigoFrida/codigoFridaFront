@@ -85,13 +85,14 @@ router.get('/iniciar-sesion', function(req, res, next) {
   res.render('lideres/default-view', options);
 });
 
-router.get('/modulos/:id', function(req, res, next) {
-  const { id } = req.params;
+router.get('/mis-equipos/:equipo/modulos/:id', function(req, res, next) {
+  const { equipo, id } = req.params;
   const options = {
     baseUrl: 'http://' + req.get('host'),
-    title: 'Fridas - Módulo',
-    section: 'modulos',
+    title: 'Mentores - Módulo',
+    section: 'mis-equipos',
     subsection: 'modulo',
+    idEquipo: equipo,
     idModulo: id,
     headerFile: 'header',
     cssFiles: ['modulo/modulo'],
