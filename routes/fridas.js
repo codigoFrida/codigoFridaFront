@@ -58,7 +58,7 @@ router.get('/mi-equipo', function(req, res, next) {
     title: 'Fridas - Mi equipo', 
     section: 'mi-equipo',
     headerFile: 'header',
-    cssFiles: [],
+    cssFiles: ['equipos/equipos'],
     jsFiles: []
   }
   res.render('fridas/default-view', options);

@@ -1,0 +1,11 @@
+.imgPerfil {
+	width: 150px;
+	height: 150px;
+}
+
+@media only screen and (max-width: 600px) {
+  .imgPerfil {
+    width: 100px;
+		height: 100px;
+  }
+}

@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><%= title %></title>
     <link rel="stylesheet" href="/css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
     <% for (let cssFile in cssFiles) { %>
         <link rel="stylesheet" href="/css/<%= cssFiles[cssFile] %>.css">
     <% } %>
@@ -21,6 +22,7 @@
         <%- include(section + '/index') %>    
     <% } %>
 
+    <%- include('mi-equipo/modals/editarNombreEquipo') %>
     <%- include('partials/footer') %>
 
     <script src="/js/jquery-3.3.1.min.js"></script>
