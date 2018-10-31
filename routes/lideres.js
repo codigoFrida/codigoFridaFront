@@ -31,7 +31,7 @@ router.get('/mis-equipos', function(req, res, next) {
     title: 'Lideres - Equipos',
     section: 'mis-equipos',
     headerFile: 'header',
-    cssFiles: [],
+    cssFiles: ['equipos/equipos'],
     jsFiles: []
   }
   res.render('lideres/default-view', options);
