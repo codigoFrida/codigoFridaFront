@@ -25,11 +25,11 @@ router.get('/fridas', function(req, res, next) {
   res.render('lideres/default-view', options);
 });
 
-router.get('/mis-equipos', function(req, res, next) {
+router.get('/equipos', function(req, res, next) {
   const options = {
     baseUrl: 'http://' + req.get('host'),
     title: 'Lideres - Equipos',
-    section: 'mis-equipos',
+    section: 'equipos',
     headerFile: 'header',
     cssFiles: ['equipos/equipos'],
     jsFiles: []
@@ -64,7 +64,7 @@ router.get('/registro', function(req, res, next) {
 router.get('/contenido-adicional', function(req, res, next) {
   const options = {
     baseUrl: 'http://' + req.get('host'),
-    title: 'Lideres - Contenido adicional',
+    title: 'Líderes - Contenido adicional',
     section: 'contenido-adicional',
     headerFile: 'header',
     cssFiles: [],
@@ -76,7 +76,7 @@ router.get('/contenido-adicional', function(req, res, next) {
 router.get('/iniciar-sesion', function(req, res, next) {
   const options = {
     baseUrl: 'http://' + req.get('host'),
-    title: 'Lideres - Login',
+    title: 'Líderes - Login',
     section: 'iniciar-sesion',
     headerFile: 'header',
     cssFiles: [],
@@ -85,17 +85,32 @@ router.get('/iniciar-sesion', function(req, res, next) {
   res.render('lideres/default-view', options);
 });
 
-router.get('/mis-equipos/:equipo/modulos/:id', function(req, res, next) {
+router.get('/equipos/:equipo/modulos/:id', function(req, res, next) {
   const { equipo, id } = req.params;
   const options = {
     baseUrl: 'http://' + req.get('host'),
-    title: 'Mentores - Módulo',
-    section: 'mis-equipos',
+    title: 'Líderes - Módulo',
+    section: 'equipos',
     subsection: 'modulo',
     idEquipo: equipo,
     idModulo: id,
     headerFile: 'header',
     cssFiles: ['modulo/modulo'],
+    jsFiles: []
+  }
+  res.render('lideres/default-view', options);
+});
+
+router.get('/equipos/:equipo', function(req, res, next) {
+  const { equipo, id } = req.params;
+  const options = {
+    baseUrl: 'http://' + req.get('host'),
+    title: 'Líderes - Equipo N',
+    section: 'equipos',
+    subsection: 'equipo',
+    idEquipo: equipo,
+    headerFile: 'header',
+    cssFiles: ['equipos/equipos'],
     jsFiles: []
   }
   res.render('lideres/default-view', options);
