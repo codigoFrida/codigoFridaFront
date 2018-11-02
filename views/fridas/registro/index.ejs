@@ -1,0 +1,88 @@
+<main class="container">
+  <div class="col-12 text-center">
+    <img id="logoRegistro" src="/img/logo.png" alt="Logo Código Frida">
+  </div>
+  <h1 class="text-center">Registro</h1>
+  <section class="d-flex flex-row flex-wrap justify-content-center">
+    <form class="col-col-md-8">
+      <h2>Datos personales</h2>
+      <div class="form-row">
+        <div class="col-sm-6 col-md-4 div-input">
+          <label for="inputNombre">Nombre</label>
+          <input id="inputNombre" name="nombre" type="text" class="form-control" placeholder="Nombre">
+        </div>
+        <div class="col-sm-6 col-md-4 div-input">
+          <label for="inputApPaterno">Apellido paterno</label>
+          <input id="inputApPaterno" name="apPaterno" type="text" class="form-control" placeholder="Apellido paterno">
+        </div>
+        <div class="col-sm-6 col-md-4 div-input">
+          <label for="inputApMaterno">Apellido materno</label>
+          <input id="inputApMaterno" name="apMaterno" type="text" class="form-control" placeholder="Apellido materno">
+        </div>
+        <div class="col-sm-6 col-md-4 div-input">
+          <label for="inputFechaNacimiento">Fecha de nacimiento</label>
+          <input id="inputFechaNacimiento" name="fechaNacimiento" type="date" class="form-control" placeholder="Apellido materno">
+        </div>
+        <div class="col-sm-6 col-md-4 div-input">
+          <label for="inputTelefono">Teléfono</label>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">+52</span>
+            </div>
+            <input id="inputTelefono" name="telefono" type="tel" class="form-control" placeholder="3120000000">
+          </div>
+        </div>
+      </div>
+      <h2>Datos de la cuenta</h2>
+      <div class="form-row">
+        <div class="col-sm-6 col-md-4 div-input">
+          <label for="inputCorreo">Correo</label>
+          <input id="inputCorreo" name="correo" type="email" class="form-control" placeholder="Correo">
+        </div>
+        <div class="col-sm-6 col-md-4 div-input">
+          <label for="inputContrasena1">Contraseña</label>
+          <input id="inputContrasena1" type="password" class="form-control" placeholder="Contraseña">
+        </div>
+        <div class="col-sm-6 col-md-4 div-input">
+          <label for="inputContrasena2">Confirmar contraseña</label>
+          <input id="inputContrasena2" type="password" class="form-control" placeholder="Confirmar contraseña">
+        </div>
+        <div class="col-sm-6 div-input">
+          <label for="inputFotoPerfil">Foto de perfil</label>
+          <input type="file" class="filestyle" data-text="Find file">
+          <input id="inputFotoPerfil" type="password" class="form-control" placeholder="Confirmar contraseña">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-sm-6 col-md-4 div-input">
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="inputEquipoClave" name="equipo" class="custom-control-input">
+            <label class="custom-control-label" for="inputEquipoClave">Ya cuento con clave</label>
+            </div>
+            <div class="col-12 div-input pr-0">
+              <input id="inputClaveEquipo" name="claveEquipo" type="text" class="form-control" placeholder="Clave de equipo">
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4 div-input">
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" id="inputEquipoNombre" name="equipo" class="custom-control-input">
+            <label class="custom-control-label" for="inputEquipoNombre">Crear equipo</label>
+          </div>
+          <div class="col-12 div-input pr-0">
+            <input id="inputNombreEquipo" name="nombreEquipo" type="text" class="form-control" placeholder="Nombre de equipo">
+          </div>
+        </div>
+      </div>
+      <div class="d-flex flex-row flex-wrap justify-content-between align-item-center">
+        <div id="div-terminos" class="custom-control custom-checkbox custom-control-inline">
+          <input type="checkbox" id="inputTerminosCondiciones" name="terminosCondiciones" class="custom-control-input" required>
+          <label class="custom-control-label" for="inputTerminosCondiciones">
+            Acepto los 
+            <a href="#">términos y condiciones</a>
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary">Darme de alta</button>
+      </div>
+    </form>
+  </section>
+</main>
