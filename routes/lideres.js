@@ -111,6 +111,7 @@ router.get('/equipos/:equipo', function(req, res, next) {
     idEquipo: equipo,
     headerFile: 'header',
     cssFiles: ['equipos/equipos'],
+    jsFiles: []
   }
   res.render('lideres/default-view', options);
 });
