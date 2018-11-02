@@ -101,4 +101,19 @@ router.get('/mis-equipos/:equipo/modulos/:id', function(req, res, next) {
   res.render('lideres/default-view', options);
 });
 
+router.get('/modulos/:id', function(req, res, next) {
+  const { id } = req.params;
+  const options = {
+    baseUrl: 'http://' + req.get('host'),
+    title: 'Módulo - Contenido',
+    section: 'modulos',
+    subsection: 'modulo-contenido',
+    idModulo: id,
+    headerFile: 'header',
+    cssFiles: ['modulo/modulo'],
+    jsFiles: []
+  }
+  res.render('lideres/default-view', options);
+});
+
 module.exports = router;
