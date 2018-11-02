@@ -2,35 +2,11 @@ var express = require('express');
 var router = express.Router();
 
 /* GET Fridas listing. */
-router.get('/registro', function(req, res, next) {
-  const options = {
-    baseUrl: 'http://' + req.get('host'),
-    title: 'Fridas - Registro', 
-    section: 'registro',
-    cssFiles: ['login/login'],
-    jsFiles: ['bootstrap/bootstrap-filestyle.min']
-  }
-  res.render('fridas/default-view', options);
-});
-
-router.get('/inicio-sesion', function(req, res, next) {
-  const options = {
-    baseUrl: 'http://' + req.get('host'),
-    title: 'Fridas - Inicio de sesión', 
-    section: 'inicio-sesion',
-    headerFile: 'headerLogin',
-    cssFiles: [],
-    jsFiles: []
-  }
-  res.render('fridas/default-view', options);
-});
-
 router.get('/modulos', function(req, res, next) {
   const options = {
     baseUrl: 'http://' + req.get('host'),
     title: 'Fridas - Módulos', 
     section: 'modulos',
-    headerFile: 'header',
     cssFiles: [],
     jsFiles: []
   }
@@ -45,7 +21,6 @@ router.get('/modulos/:id', function(req, res, next) {
     section: 'modulos',
     subsection: 'modulo',
     idModulo: id,
-    headerFile: 'header',
     cssFiles: [],
     jsFiles: []
   }
@@ -57,8 +32,7 @@ router.get('/mi-equipo', function(req, res, next) {
     baseUrl: 'http://' + req.get('host'),
     title: 'Fridas - Mi equipo', 
     section: 'mi-equipo',
-    headerFile: 'header',
-    cssFiles: ['equipos/equipos'],
+    cssFiles: [],
     jsFiles: []
   }
   res.render('fridas/default-view', options);
@@ -69,7 +43,6 @@ router.get('/contenido-adicional', function(req, res, next) {
     baseUrl: 'http://' + req.get('host'),
     title: 'Fridas - Contenido adicional', 
     section: 'contenido-adicional',
-    headerFile: 'header',
     cssFiles: [],
     jsFiles: []
   }
@@ -81,7 +54,6 @@ router.get('/mi-perfil', function(req, res, next) {
     baseUrl: 'http://' + req.get('host'),
     title: 'Fridas - Mi perfil', 
     section: 'mi-perfil',
-    headerFile: 'header',
     cssFiles: [],
     jsFiles: []
   }
