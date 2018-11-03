@@ -29,7 +29,8 @@
     <script src="/js/bootstrap/bootstrap.min.js"></script>
     <script>
         const actualPage = "<%= section %>";
-        localStorage.baseUrl = "<%= baseUrl %>"
+        localStorage.apiUrl = "<%= apiUrl %>";
+        localStorage.baseUrl = "<%= baseUrl %>";
     </script>
     <script src="/js/utils.js"></script>
     <% for (let jsFile in jsFiles) { %>
