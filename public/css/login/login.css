@@ -21,11 +21,20 @@ h2 {
     margin-top: 10px;
 }
 
+#inputTelefono {
+    border-top-right-radius: .25rem;
+    border-bottom-right-radius: .25rem;
+}
+
 .group-span-filestyle.input-group-btn > .btn {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 }
 
-#div-terminos {
+#divTerminos {
     padding-top: 5px;
+}
+
+#divInputEquipoNombre {
+    display: none;
 }

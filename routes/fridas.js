@@ -8,7 +8,7 @@ router.get('/registro', function(req, res, next) {
     title: 'Fridas - Registro', 
     section: 'registro',
     cssFiles: ['login/login'],
-    jsFiles: ['bootstrap/bootstrap-filestyle.min']
+    jsFiles: ['bootstrap/bootstrap-filestyle.min','fridas/registro']
   }
   res.render('fridas/default-view', options);
 });
