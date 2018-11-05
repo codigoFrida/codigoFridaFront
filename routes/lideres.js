@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+var apiUrl = 'http://127.0.0.1:5000/api/';
 router.get('/modulos', function(req, res, next) {
   const options = {
     baseUrl: 'http://' + req.get('host'),
@@ -88,6 +88,7 @@ router.get('/iniciar-sesion', function(req, res, next) {
 router.get('/equipos/:equipo/modulos/:id', function(req, res, next) {
   const { equipo, id } = req.params;
   const options = {
+    apiUrl: 'http://' + req.get('host'),
     baseUrl: 'http://' + req.get('host'),
     title: 'Líderes - Módulo',
     section: 'equipos',
@@ -104,6 +105,7 @@ router.get('/equipos/:equipo/modulos/:id', function(req, res, next) {
 router.get('/equipos/:equipo', function(req, res, next) {
   const { equipo, id } = req.params;
   const options = {
+    apiUrl: apiUrl,
     baseUrl: 'http://' + req.get('host'),
     title: 'Líderes - Equipo N',
     section: 'equipos',
@@ -111,6 +113,7 @@ router.get('/equipos/:equipo', function(req, res, next) {
     idEquipo: equipo,
     headerFile: 'header',
     cssFiles: ['equipos/equipos'],
+    jsFiles: ['lideres/equipo/index']
   }
   res.render('lideres/default-view', options);
 });
