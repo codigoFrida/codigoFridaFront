@@ -82,8 +82,8 @@ router.get('/mi-perfil', function(req, res, next) {
     title: 'Fridas - Mi perfil',
     section: 'mi-perfil',
     headerFile: 'header',
-    cssFiles: [],
-    jsFiles: []
+    cssFiles: ['mi-perfil/perfil'],
+    jsFiles: ['bootstrap/bootstrap-filestyle.min']
   }
   res.render('fridas/default-view', options);
 });
