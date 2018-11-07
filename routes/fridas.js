@@ -3,12 +3,26 @@ var router = express.Router();
 var apiUrl = 'http://127.0.0.1:5000/api/';
 
 /* GET Fridas listing. */
+router.get('/', function(req, res, next) {
+  const options = {
+    apiUrl: apiUrl,
+    baseUrl: 'http://' + req.get('host'),
+    title: 'Código Frida - Fridas',
+    section: 'index',
+    headerFile: 'headerLogin',
+    cssFiles: [],
+    jsFiles: []
+  }
+  res.render('fridas/default-view', options);
+});
+
 router.get('/registro', function(req, res, next) {
   const options = {
     apiUrl: apiUrl,
     baseUrl: 'http://' + req.get('host'),
     title: 'Fridas - Registro',
     section: 'registro',
+    headerFile: 'headerLogin',
     cssFiles: ['login/login'],
     jsFiles: ['bootstrap/bootstrap-filestyle.min','fridas/registro']
   }
