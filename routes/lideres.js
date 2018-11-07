@@ -3,6 +3,7 @@ var router = express.Router();
 var apiUrl = 'http://127.0.0.1:5000/api/';
 router.get('/modulos', function(req, res, next) {
   const options = {
+    apiUrl: apiUrl,
     baseUrl: 'http://' + req.get('host'),
     title: 'Lideres - Módulos',
     section: 'modulos',
@@ -15,6 +16,7 @@ router.get('/modulos', function(req, res, next) {
 
 router.get('/fridas', function(req, res, next) {
   const options = {
+    apiUrl: apiUrl,
     baseUrl: 'http://' + req.get('host'),
     title: 'Lideres - Fridas',
     section: 'fridas',
@@ -27,6 +29,7 @@ router.get('/fridas', function(req, res, next) {
 
 router.get('/equipos', function(req, res, next) {
   const options = {
+    apiUrl: apiUrl,
     baseUrl: 'http://' + req.get('host'),
     title: 'Lideres - Equipos',
     section: 'equipos',
@@ -39,6 +42,7 @@ router.get('/equipos', function(req, res, next) {
 
 router.get('/mi-perfil', function(req, res, next) {
   const options = {
+    apiUrl: apiUrl,
     baseUrl: 'http://' + req.get('host'),
     title: 'Lideres - Perfil',
     section: 'mi-perfil',
@@ -51,6 +55,7 @@ router.get('/mi-perfil', function(req, res, next) {
 
 router.get('/registro', function(req, res, next) {
   const options = {
+    apiUrl: apiUrl,
     baseUrl: 'http://' + req.get('host'),
     title: 'Lideres - registro',
     section: 'registro',
@@ -63,6 +68,7 @@ router.get('/registro', function(req, res, next) {
 
 router.get('/contenido-adicional', function(req, res, next) {
   const options = {
+    apiUrl: apiUrl,
     baseUrl: 'http://' + req.get('host'),
     title: 'Líderes - Contenido adicional',
     section: 'contenido-adicional',
@@ -75,6 +81,7 @@ router.get('/contenido-adicional', function(req, res, next) {
 
 router.get('/iniciar-sesion', function(req, res, next) {
   const options = {
+    apiUrl: apiUrl,
     baseUrl: 'http://' + req.get('host'),
     title: 'Líderes - Login',
     section: 'iniciar-sesion',
@@ -121,6 +128,7 @@ router.get('/equipos/:equipo', function(req, res, next) {
 router.get('/modulos/:id', function(req, res, next) {
   const { id } = req.params;
   const options = {
+    apiUrl: apiUrl,
     baseUrl: 'http://' + req.get('host'),
     title: 'Módulo - Contenido',
     section: 'modulos',
