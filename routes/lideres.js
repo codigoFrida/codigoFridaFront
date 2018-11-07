@@ -43,7 +43,7 @@ router.get('/mi-perfil', function(req, res, next) {
     title: 'Lideres - Perfil',
     section: 'mi-perfil',
     headerFile: 'header',
-    cssFiles: [],
+    cssFiles: ['mi-perfil/perfil'],
     jsFiles: []
   }
   res.render('lideres/default-view', options);

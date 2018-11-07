@@ -87,7 +87,7 @@ router.get('/mi-perfil', function(req, res, next) {
     title: 'Mentores - Mi perfil',
     section: 'mi-perfil',
     headerFile: 'header',
-    cssFiles: [],
+    cssFiles: ['mi-perfil/perfil'],
     jsFiles: []
   }
   res.render('mentores/default-view', options);
