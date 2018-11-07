@@ -1,9 +1,11 @@
 var express = require('express');
 var router = express.Router();
+var apiUrl = 'http://127.0.0.1:5000/api/';
 
 /* GET Mentores listing. */
 router.get('/registro', function(req, res, next) {
   const options = {
+    apiUrl: apiUrl,
     baseUrl: 'http://' + req.get('host'),
     title: 'Mentores - Registro',
     section: 'registro',
@@ -16,6 +18,7 @@ router.get('/registro', function(req, res, next) {
 
 router.get('/inicio-sesion', function(req, res, next) {
   const options = {
+    apiUrl: apiUrl,
     baseUrl: 'http://' + req.get('host'),
     title: 'Mentores - Inicio de sesión',
     section: 'inicio-sesion',
@@ -28,6 +31,7 @@ router.get('/inicio-sesion', function(req, res, next) {
 
 router.get('/mis-equipos', function(req, res, next) {
   const options = {
+    apiUrl: apiUrl,
     baseUrl: 'http://' + req.get('host'),
     title: 'Mentores - Mis equipos',
     section: 'mis-equipos',
@@ -41,6 +45,7 @@ router.get('/mis-equipos', function(req, res, next) {
 router.get('/mis-equipos/:equipo', function(req, res, next) {
   const { equipo } = req.params;
   const options = {
+    apiUrl: apiUrl,
     baseUrl: 'http://' + req.get('host'),
     title: 'Mentores - Mis equipos',
     section: 'mis-equipos',
@@ -56,6 +61,7 @@ router.get('/mis-equipos/:equipo', function(req, res, next) {
 router.get('/mis-equipos/:equipo/modulos/:id', function(req, res, next) {
   const { equipo, id } = req.params;
   const options = {
+    apiUrl: apiUrl,
     baseUrl: 'http://' + req.get('host'),
     title: 'Mentores - Módulo',
     section: 'mis-equipos',
@@ -71,6 +77,7 @@ router.get('/mis-equipos/:equipo/modulos/:id', function(req, res, next) {
 
 router.get('/contenido-adicional', function(req, res, next) {
   const options = {
+    apiUrl: apiUrl,
     baseUrl: 'http://' + req.get('host'),
     title: 'Mentores - Contenido adicional',
     section: 'contenido-adicional',
@@ -83,6 +90,7 @@ router.get('/contenido-adicional', function(req, res, next) {
 
 router.get('/mi-perfil', function(req, res, next) {
   const options = {
+    apiUrl: apiUrl,
     baseUrl: 'http://' + req.get('host'),
     title: 'Mentores - Mi perfil',
     section: 'mi-perfil',
