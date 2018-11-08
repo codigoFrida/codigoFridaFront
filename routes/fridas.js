@@ -36,8 +36,8 @@ router.get('/inicio-sesion', function(req, res, next) {
     title: 'Fridas - Inicio de sesión',
     section: 'inicio-sesion',
     headerFile: 'headerLogin',
-    cssFiles: [],
-    jsFiles: []
+    cssFiles: ['login/login'],
+    jsFiles: ['fridas/login']
   }
   res.render('fridas/default-view', options);
 });

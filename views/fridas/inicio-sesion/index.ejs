@@ -1,18 +1,39 @@
-<main>
-  <form>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+<main class="container">
+  <div class="col-12 text-center">
+    <img id="logoRegistro" src="/img/logo.png" alt="Logo Código Frida">
+  </div>
+  <h1 class="text-center">Iniciar sesión</h1>
+  <section class="d-flex flex-row flex-wrap justify-content-center">
+    <form id="frmLogin" novalidate class="col-12 col-md-5 needs-validation">
+      <div class="form-row">
+        <div class="col-12 div-input">
+          <label for="inputCorreo">Correo</label>
+          <input id="inputCorreo" name="correo" type="email" class="form-control" placeholder="Correo" required>
+          <div class="invalid-feedback">
+            Este campo es obligatorio. 
+            <br>
+            El correo electrónico debe ser válido.
+          </div>
+        </div>
+        <div class="col-12 div-input">
+          <label for="inputContrasena">Contraseña</label>
+          <input id="inputContrasena" name="contrasena" type="password" class="form-control" placeholder="Contraseña" minlength="6" maxlength="10" required>
+          <div class="invalid-feedback">
+            Este campo es obligatorio.
+            <br>
+            <span class="mensajeContrasena"></span>
+          </div>
+        </div>
+        <div class="col-12 d-flex justify-content-end flex-wrap">
+          <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+        </div>
+      </div>
+    </form>
+    <div class="col-12 d-flex justify-content-center flex-wrap">
+      <p class="my-4">
+        ¿No tienes cuenta? 
+        <a href="<%= baseUrl %>/fridas/registro">Regístrate aquí</a>
+      </p>
     </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-    </div>
-    <div class="form-group form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+  </section>
 </main>

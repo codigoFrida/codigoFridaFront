@@ -14,6 +14,15 @@ function validateForm() {
     });
 }
 
+function serializedArrayToObject(serializedArray) {
+    // Create an object without prototype.
+    let dataObject = Object.create(null, {});
+    serializedArray.map(({name, value}) => {
+        dataObject[name] = value;
+    })
+    return dataObject;
+} 
+
 $(document).ready(() => {
     setActiveNavbarOption(actualPage);
     validateForm();
