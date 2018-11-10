@@ -104,7 +104,7 @@ router.get('/equipos/:equipo/modulos/:id', function(req, res, next) {
     idModulo: id,
     headerFile: 'header',
     cssFiles: ['modulo/modulo'],
-    jsFiles: []
+    jsFiles: ['bootstrap/bootstrap-filestyle.min']
   }
   res.render('lideres/default-view', options);
 });

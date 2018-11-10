@@ -66,7 +66,7 @@ router.get('/modulos/:id', function(req, res, next) {
     idModulo: id,
     headerFile: 'header',
     cssFiles: ['modulo/modulo'],
-    jsFiles: []
+    jsFiles: ['bootstrap/bootstrap-filestyle.min']
   }
   res.render('fridas/default-view', options);
 });
