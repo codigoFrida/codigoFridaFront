@@ -35,7 +35,7 @@ router.get('/equipos', function(req, res, next) {
     section: 'equipos',
     headerFile: 'header',
     cssFiles: ['equipos/equipos'],
-    jsFiles: []
+    jsFiles: ['lideres/equipos/index']
   }
   res.render('lideres/default-view', options);
 });
