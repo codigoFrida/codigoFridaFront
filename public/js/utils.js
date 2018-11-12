@@ -21,7 +21,18 @@ function serializedArrayToObject(serializedArray) {
         dataObject[name] = value;
     })
     return dataObject;
-} 
+}
+
+function logout() {
+    const targetUrl = `${localStorage.baseUrl}/${sessionStorage.rol}`;
+    $.ajax({
+        method: 'POST',
+        url: `${targetUrl}/cerrarSesion`
+    }).done((result) => {
+        console.log(result)
+        location.href = result.targetUrl;
+    });
+}
 
 $(document).ready(() => {
     setActiveNavbarOption(actualPage);

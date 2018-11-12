@@ -17,6 +17,8 @@ function login(dataObject) {
     $.post('http://127.0.0.1:3000/fridas/iniciarSesion', dataObject)
     .done((result) => {
         console.log(result)
+        sessionStorage.rol = 'fridas';
+        location.href = result.targetUrl;
     })
 }
 

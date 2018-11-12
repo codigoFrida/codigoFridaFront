@@ -64,6 +64,12 @@ router.post('/iniciarSesion', function(req, res, next) {
   res.json({targetUrl});
 });
 
+router.post('/cerrarSesion', function(req, res, next) {
+  const targetUrl = `${global.baseUrl}/fridas/modulos`;
+  req.session.user = null;
+  res.json({targetUrl});
+});
+
 router.get('/modulos', sessionCheckerFridas, function(req, res, next) {
   const options = {
     apiUrl: apiUrl,
