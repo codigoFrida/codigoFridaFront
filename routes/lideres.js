@@ -73,7 +73,7 @@ router.get('/contenido-adicional', function(req, res, next) {
     title: 'Líderes - Contenido adicional',
     section: 'contenido-adicional',
     headerFile: 'header',
-    cssFiles: [],
+    cssFiles: ['modulo/modulo'],
     jsFiles: []
   }
   res.render('lideres/default-view', options);
