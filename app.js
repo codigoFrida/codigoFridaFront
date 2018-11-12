@@ -1,8 +1,11 @@
+global.baseUrl = 'http://127.0.0.1:3000';
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var session = require('express-session');
 
 var indexRouter = require('./routes/index');
 var fridasRouter = require('./routes/fridas');
@@ -20,6 +23,25 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(session({
+  name: 'user_sid',
+  secret: 'c0d1g0Fr1d4Fr0nt',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { 
+    expires: 60000*5,
+    secure: false 
+  }
+}));
+
+// Check if user's cookie is still saved in browser and user is not set, then automatically log the user out.
+app.use((req, res, next) => {
+  if (req.cookies.user_sid && !req.session.user) {
+      res.clearCookie('user_sid');
+  }
+  next();
+});
 
 app.use('/', indexRouter);
 app.use('/fridas', fridasRouter);
