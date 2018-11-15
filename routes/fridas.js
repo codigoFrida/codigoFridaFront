@@ -4,9 +4,8 @@ var {sessionCheckerLoginFridas, sessionCheckerFridas} = require('./../session');
 var headerFile = '';
 
 function setHeaderFile(req, res, next) {
-  if (req.session.user) {
-    if (req.session.user.type == 'fridas')
-      headerFile = 'header';
+  if (req.session.user && req.session.user.type == 'fridas') {
+    headerFile = 'header';
   } else {
     headerFile = 'headerLogin';
   }

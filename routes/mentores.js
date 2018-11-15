@@ -4,8 +4,7 @@ var {sessionCheckerLoginMentores, sessionCheckerMentores} = require('./../sessio
 var headerFile = '';
 
 function setHeaderFile(req, res, next) {
-  if (req.session.user) {
-    if (req.session.user.type == 'mentores')
+  if (req.session.user && req.session.user.type == 'mentores') {
       headerFile = 'header';
   } else {
     headerFile = 'headerLogin';
