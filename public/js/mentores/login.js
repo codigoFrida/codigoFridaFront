@@ -12,12 +12,10 @@ function loginUser() {
 function login(dataObject) {
     //TODO
     //POST function to login
-    // console.log(localStorage.baseUrl + '/fridas/modulos')
-    // location.href = localStorage.baseUrl + '/fridas/modulos';
-    $.post('http://127.0.0.1:3000/fridas/iniciarSesion', dataObject)
+    $.post('http://127.0.0.1:3000/mentores/iniciarSesion', dataObject)
     .done((result) => {
         console.log(result)
-        sessionStorage.rol = 'fridas';
+        sessionStorage.rol = 'mentores';
         location.href = result.targetUrl;
     })
 }
