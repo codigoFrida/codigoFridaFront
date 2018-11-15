@@ -1,4 +1,5 @@
 global.baseUrl = 'http://127.0.0.1:3000';
+global.apiUrl = 'http://127.0.0.1:5000/api/';
 
 var createError = require('http-errors');
 var express = require('express');

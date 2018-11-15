@@ -1,13 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var {sessionCheckerLoginFridas, sessionCheckerFridas} = require('./../session');
-var apiUrl = 'http://127.0.0.1:5000/api/';
 var headerFile = '';
 
 function setHeaderFile(req, res, next) {
-  if (req.session.user) {
-    if (req.session.user.type == 'fridas')
-      headerFile = 'header';
+  if (req.session.user && req.session.user.type == 'fridas') {
+    headerFile = 'header';
   } else {
     headerFile = 'headerLogin';
   }
@@ -17,7 +15,7 @@ function setHeaderFile(req, res, next) {
 /* GET Fridas listing. */
 router.get('/', setHeaderFile, function(req, res, next) {
   const options = {
-    apiUrl: apiUrl,
+    apiUrl: global.apiUrl,
     baseUrl: global.baseUrl,
     title: 'Código Frida - Fridas',
     section: 'index',
@@ -30,7 +28,7 @@ router.get('/', setHeaderFile, function(req, res, next) {
 
 router.get('/registro', sessionCheckerLoginFridas, function(req, res, next) {
   const options = {
-    apiUrl: apiUrl,
+    apiUrl: global.apiUrl,
     baseUrl: global.baseUrl,
     title: 'Fridas - Registro',
     section: 'registro',
@@ -43,7 +41,7 @@ router.get('/registro', sessionCheckerLoginFridas, function(req, res, next) {
 
 router.get('/inicio-sesion', sessionCheckerLoginFridas, function(req, res, next) {
   const options = {
-    apiUrl: apiUrl,
+    apiUrl: global.apiUrl,
     baseUrl: global.baseUrl,
     title: 'Fridas - Inicio de sesión',
     section: 'inicio-sesion',
@@ -72,7 +70,7 @@ router.post('/cerrarSesion', function(req, res, next) {
 
 router.get('/modulos', sessionCheckerFridas, function(req, res, next) {
   const options = {
-    apiUrl: apiUrl,
+    apiUrl: global.apiUrl,
     baseUrl: global.baseUrl,
     title: 'Fridas - Módulos',
     section: 'modulos',
@@ -86,7 +84,7 @@ router.get('/modulos', sessionCheckerFridas, function(req, res, next) {
 router.get('/modulos/:id', sessionCheckerFridas, function(req, res, next) {
   const { id } = req.params;
   const options = {
-    apiUrl: apiUrl,
+    apiUrl: global.apiUrl,
     baseUrl: global.baseUrl,
     title: 'Fridas - Módulo',
     section: 'modulos',
@@ -101,7 +99,7 @@ router.get('/modulos/:id', sessionCheckerFridas, function(req, res, next) {
 
 router.get('/mi-equipo', sessionCheckerFridas, function(req, res, next) {
   const options = {
-    apiUrl: apiUrl,
+    apiUrl: global.apiUrl,
     baseUrl: global.baseUrl,
     title: 'Fridas - Mi equipo',
     section: 'mi-equipo',
@@ -114,7 +112,7 @@ router.get('/mi-equipo', sessionCheckerFridas, function(req, res, next) {
 
 router.get('/contenido-adicional', sessionCheckerFridas, function(req, res, next) {
   const options = {
-    apiUrl: apiUrl,
+    apiUrl: global.apiUrl,
     baseUrl: global.baseUrl,
     title: 'Fridas - Contenido adicional',
     section: 'contenido-adicional',
@@ -127,7 +125,7 @@ router.get('/contenido-adicional', sessionCheckerFridas, function(req, res, next
 
 router.get('/mi-perfil', sessionCheckerFridas, function(req, res, next) {
   const options = {
-    apiUrl: apiUrl,
+    apiUrl: global.apiUrl,
     baseUrl: global.baseUrl,
     title: 'Fridas - Mi perfil',
     section: 'mi-perfil',
