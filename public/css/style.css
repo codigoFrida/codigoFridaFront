@@ -1,7 +1,45 @@
+@import url('https://fonts.googleapis.com/css?family=Pacifico|Quicksand:400,700');
+
 body {
-  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Quicksand', sans-serif;
 }
 
+.btn-primary {
+  background-color: #882b37;
+  border-color: #882b37;
+}
+
+.btn-primary:hover {
+  background-color: #d95454;
+  border-color: #d95454;
+}
+.btn-primary:not(:disabled):not(.disabled).active:focus, 
+.btn-primary:not(:disabled):not(.disabled):active:focus, 
+.show > .btn-primary.dropdown-toggle:focus {
+  box-shadow: 0 0 0 .2rem rgba(217,84,84,.5);
+
+}
 a {
-  color: #00B7FF;
+  color: #d95454;
+}
+a:hover {
+  color: #882b37;
+  text-decoration: none;
+}
+main {
+  min-height: calc(100vh - 58px - 34px);
+  padding: 2rem 1rem;
+}
+
+.navbar {
+  border-bottom: 5px solid #d95454;
+  padding: 3px 1rem 0 1rem;
+}
+
+footer {
+  font-size: 12px;
+  text-align: center;
+  background-color: #d95454;
+  color: #ffffff;
+  padding: 8px;
 }

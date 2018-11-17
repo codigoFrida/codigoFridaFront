@@ -4,25 +4,20 @@
     	<div class="col-12 col-lg-3 text-justify">
     		<h1>Mi equipo</h1>
     	</div>
-    	<div class="col-12 col-sm-11 col-lg-6">
-    		<h5>Nombre del equipo</h5>
-    		
-    	</div>
-    	<div class="col-12 col-sm-1 col-lg-1 text-center">
-
-    		<button type="button" class="btn btn-outline-dark btn-sm float-right rounded-circle" data-toggle="modal" data-target="#editarNombreEquipo">
-				  <i class="fas fa-pencil-alt"></i>
+    	<div class="col-12 col-lg-7 contenedorNombreEquipo">
+    		<h5 id="nombreEquipo">Nombre del equipo</h5>
+				<button type="button" class="btn btn-outline-dark btn-sm float-right rounded-circle" data-toggle="modal" data-target="#editarNombreEquipo">
+					<i class="fas fa-pencil-alt"></i>
 				</button>
     	</div>
 			<div class="col-12 col-lg-2 text-center">
-    		<p>Código del equipo: AAAA-123</p>
+				<p class="contenedorCodigoEquipo">
+					Código del equipo: 
+					<span id="codigoEquipo">AAAA-123</span>
+				</p>
     	</div>
-
-			<h2 class="my-4 text-center">Módulos</h2>
-
 			<div class="col-12">
 				<div class="row">
-
 					<div class="col-12">
 						<div class="card border-info mb-3">
 						  <div class="card-body">
