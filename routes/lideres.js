@@ -1,10 +1,37 @@
 var express = require('express');
 var router = express.Router();
-var apiUrl = 'http://127.0.0.1:5000/api/';
-router.get('/modulos', function(req, res, next) {
+// var apiUrl = 'http://127.0.0.1:5000/api/';
+var {sessionCheckerLoginLideres, sessionCheckerLideres} = require('./../session');
+var headerFile = '';
+
+function setHeaderFile(req, res, next) {
+  if (req.session.user && req.session.user.type == 'lideres') {
+      headerFile = 'header';
+  } else {
+    headerFile = 'headerLogin';
+  }
+  next();
+}
+
+/* GET Mentores listing. */
+router.get('/', setHeaderFile, function(req, res, next) {
   const options = {
-    apiUrl: apiUrl,
-    baseUrl: 'http://' + req.get('host'),
+    apiUrl: global.apiUrl,
+    baseUrl: global.baseUrl,
+    title: 'Código Frida - lideres',
+    section: 'index',
+    headerFile: headerFile,
+    cssFiles: [],
+    jsFiles: []
+  }
+  res.render('lideres/default-view', options);
+});
+
+
+router.get('/modulos', sessionCheckerLideres, function(req, res, next) {
+  const options = {
+    apiUrl: global.apiUrl,
+    baseUrl: global.baseUrl,
     title: 'Lideres - Módulos',
     section: 'modulos',
     headerFile: 'header',
@@ -14,10 +41,10 @@ router.get('/modulos', function(req, res, next) {
   res.render('lideres/default-view', options);
 });
 
-router.get('/fridas', function(req, res, next) {
+router.get('/fridas',sessionCheckerLideres, function(req, res, next) {
   const options = {
-    apiUrl: apiUrl,
-    baseUrl: 'http://' + req.get('host'),
+    apiUrl: global.apiUrl,
+    baseUrl: global.baseUrl,
     title: 'Lideres - Fridas',
     section: 'fridas',
     headerFile: 'header',
@@ -27,10 +54,10 @@ router.get('/fridas', function(req, res, next) {
   res.render('lideres/default-view', options);
 });
 
-router.get('/equipos', function(req, res, next) {
+router.get('/equipos', sessionCheckerLideres, function(req, res, next) {
   const options = {
-    apiUrl: apiUrl,
-    baseUrl: 'http://' + req.get('host'),
+    apiUrl: global.apiUrl,
+    baseUrl: global.baseUrl,
     title: 'Lideres - Equipos',
     section: 'equipos',
     headerFile: 'header',
@@ -40,10 +67,10 @@ router.get('/equipos', function(req, res, next) {
   res.render('lideres/default-view', options);
 });
 
-router.get('/mi-perfil', function(req, res, next) {
+router.get('/mi-perfil', sessionCheckerLideres, function(req, res, next) {
   const options = {
-    apiUrl: apiUrl,
-    baseUrl: 'http://' + req.get('host'),
+    apiUrl: global.apiUrl,
+    baseUrl: global.baseUrl,
     title: 'Lideres - Perfil',
     section: 'mi-perfil',
     headerFile: 'header',
@@ -53,10 +80,10 @@ router.get('/mi-perfil', function(req, res, next) {
   res.render('lideres/default-view', options);
 });
 
-router.get('/registro', function(req, res, next) {
+router.get('/registro', sessionCheckerLideres, function(req, res, next) {
   const options = {
-    apiUrl: apiUrl,
-    baseUrl: 'http://' + req.get('host'),
+    apiUrl: global.apiUrl,
+    baseUrl: global.baseUrl,
     title: 'Lideres - registro',
     section: 'registro',
     headerFile: 'header',
@@ -66,10 +93,10 @@ router.get('/registro', function(req, res, next) {
   res.render('lideres/default-view', options);
 });
 
-router.get('/contenido-adicional', function(req, res, next) {
+router.get('/contenido-adicional', sessionCheckerLideres, function(req, res, next) {
   const options = {
-    apiUrl: apiUrl,
-    baseUrl: 'http://' + req.get('host'),
+    apiUrl: global.apiUrl,
+    baseUrl: global.baseUrl,
     title: 'Líderes - Contenido adicional',
     section: 'contenido-adicional',
     headerFile: 'header',
@@ -79,24 +106,40 @@ router.get('/contenido-adicional', function(req, res, next) {
   res.render('lideres/default-view', options);
 });
 
-router.get('/iniciar-sesion', function(req, res, next) {
+router.get('/iniciar-sesion', sessionCheckerLoginLideres, function(req, res, next) {
   const options = {
-    apiUrl: apiUrl,
-    baseUrl: 'http://' + req.get('host'),
+    apiUrl: global.apiUrl,
+    baseUrl: global.baseUrl,
     title: 'Líderes - Login',
     section: 'iniciar-sesion',
-    headerFile: 'header',
-    cssFiles: [],
-    jsFiles: []
+    headerFile: 'headerLogin',
+    cssFiles: ['login/login'],
+    jsFiles: ['lideres/login']
   }
   res.render('lideres/default-view', options);
 });
 
-router.get('/equipos/:equipo/modulos/:id', function(req, res, next) {
+router.post('/iniciarSesion',  function(req, res, next) {
+  const { correo } = req.body;
+  const targetUrl = global.targetUrl || `${global.baseUrl}/lideres/equipos`;
+  req.session.user = {
+    id: correo,
+    type: 'lideres',
+  };
+  res.json({targetUrl});
+});
+
+router.post('/cerrarSesion', function(req, res, next) {
+  const targetUrl = `${global.baseUrl}/mentores/equipos`;
+  req.session.user = null;
+  res.json({targetUrl});
+});
+
+router.get('/equipos/:equipo/modulos/:id', sessionCheckerLideres, function(req, res, next) {
   const { equipo, id } = req.params;
   const options = {
-    apiUrl: 'http://' + req.get('host'),
-    baseUrl: 'http://' + req.get('host'),
+    apiUrl: global.apiUrl,
+    baseUrl: global.baseUrl,
     title: 'Líderes - Módulo',
     section: 'equipos',
     subsection: 'modulo',
@@ -109,11 +152,11 @@ router.get('/equipos/:equipo/modulos/:id', function(req, res, next) {
   res.render('lideres/default-view', options);
 });
 
-router.get('/equipos/:equipo', function(req, res, next) {
+router.get('/equipos/:equipo', sessionCheckerLideres, function(req, res, next) {
   const { equipo, id } = req.params;
   const options = {
-    apiUrl: apiUrl,
-    baseUrl: 'http://' + req.get('host'),
+    apiUrl: global.apiUrl,
+    baseUrl: global.baseUrl,
     title: 'Líderes - Equipo N',
     section: 'equipos',
     subsection: 'equipo',
@@ -125,11 +168,11 @@ router.get('/equipos/:equipo', function(req, res, next) {
   res.render('lideres/default-view', options);
 });
 
-router.get('/modulos/:id', function(req, res, next) {
+router.get('/modulos/:id', sessionCheckerLideres, function(req, res, next) {
   const { id } = req.params;
   const options = {
-    apiUrl: apiUrl,
-    baseUrl: 'http://' + req.get('host'),
+    apiUrl: global.apiUrl,
+    baseUrl: global.baseUrl,
     title: 'Módulo - Contenido',
     section: 'modulos',
     subsection: 'modulo-contenido',
