@@ -10,16 +10,25 @@ function loginUser() {
 }
 
 function login(dataObject) {
-    //TODO
-    //POST function to login
-    // console.log(localStorage.baseUrl + '/fridas/modulos')
-    // location.href = localStorage.baseUrl + '/fridas/modulos';
-    $.post('http://127.0.0.1:3000/fridas/iniciarSesion', dataObject)
-    .done((result) => {
-        console.log(result)
-        sessionStorage.rol = 'fridas';
-        location.href = result.targetUrl;
-    })
+    $.post(`${localStorage.apiUrl}sesiones`, dataObject)
+        .done((result) => {
+            sessionStorage.token = result.token;
+            sessionStorage.rol = 'fridas';
+            localLogin(dataObject);
+        })
+        .fail((error) => {
+            alert(error.responseJSON.message)
+        });
+}
+
+function localLogin(dataObject) {
+    $.post(`${localStorage.baseUrl}/fridas/iniciarSesion`, dataObject)
+        .done((result) => {
+            location.href = result.targetUrl;     
+        })
+        .fail((error) => {
+            console.log(error)
+        });
 }
 
 $(document).ready(function() {

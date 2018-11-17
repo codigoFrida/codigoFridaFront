@@ -1,6 +1,18 @@
+function setRequestParams(paramsObj) {
+    const { url, dataObject } = paramsObj;
+    return {
+        url: url, 
+        data: dataObject,
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', sessionStorage.token);
+        }
+    };
+}
+
 function setActiveNavbarOption(actualPage) {
     $(`li[data-section="${actualPage}"]`).addClass('active');
 }
+
 function validateForm() {
     const forms = document.getElementsByClassName('needs-validation');
     const validation = Array.prototype.filter.call(forms, function(form) {
