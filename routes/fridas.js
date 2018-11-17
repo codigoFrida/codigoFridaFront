@@ -20,7 +20,7 @@ router.get('/', setHeaderFile, function(req, res, next) {
     title: 'Código Frida - Fridas',
     section: 'index',
     headerFile: headerFile,
-    cssFiles: [],
+    cssFiles: ['landing-page/index'],
     jsFiles: []
   }
   res.render('fridas/default-view', options);
