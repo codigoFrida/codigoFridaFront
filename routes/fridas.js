@@ -76,7 +76,7 @@ router.get('/modulos', sessionCheckerFridas, function(req, res, next) {
     section: 'modulos',
     headerFile: 'header',
     cssFiles: [],
-    jsFiles: []
+    jsFiles: ['fridas/modulos']
   }
   res.render('fridas/default-view', options);
 });
