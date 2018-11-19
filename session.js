@@ -9,7 +9,7 @@ var sessionCheckerLoginFridas = (req, res, next) => {
             next(createError(403));
     } else {
         next();
-    }    
+    }
 };
 
 // Middleware function to check for logged-in Fridas users
@@ -23,7 +23,7 @@ var sessionCheckerFridas = (req, res, next) => {
         if (req.originalUrl.match('fridas'))
             global.targetUrl = `${global.baseUrl}/fridas${req.url}`;
         res.redirect(`${global.baseUrl}/fridas/inicio-sesion`);
-    }    
+    }
 };
 
 // Middleware function to check for logged-in users
@@ -35,7 +35,7 @@ var sessionCheckerLoginMentores = (req, res, next) => {
             next(createError(403));
     } else {
         next();
-    }    
+    }
 };
 
 // Middleware function to check for logged-in Mentores users
@@ -49,12 +49,40 @@ var sessionCheckerMentores = (req, res, next) => {
         if (req.originalUrl.match('mentores'))
             global.targetUrl = `${global.baseUrl}/mentores${req.url}`;
         res.redirect(`${global.baseUrl}/mentores/inicio-sesion`);
-    }    
+    }
+};
+
+// Middleware function to check for logged-in Lideres users
+var sessionCheckerLideres = (req, res, next) => {
+    if (req.session.user && req.cookies.user_sid) {
+        if (req.session.user.type == 'lideres')
+            next();
+        else
+            next(createError(403));
+    } else {
+        if (req.originalUrl.match('lideres'))
+            global.targetUrl = `${global.baseUrl}/lideres${req.url}`;
+        res.redirect(`${global.baseUrl}/lideres/iniciar-sesion`);
+    }
+};
+
+// Middleware function to check for logged-in users
+var sessionCheckerLoginLideres = (req, res, next) => {
+    if (req.session.user && req.cookies.user_sid) {
+        if (req.session.user.type == 'lideres')
+            res.redirect('equipos');
+        else
+            next(createError(403));
+    } else {
+        next();
+    }
 };
 
 module.exports = {
-    sessionCheckerLoginFridas, 
-    sessionCheckerFridas, 
-    sessionCheckerLoginMentores, 
-    sessionCheckerMentores
+    sessionCheckerLoginFridas,
+    sessionCheckerFridas,
+    sessionCheckerLoginMentores,
+    sessionCheckerMentores,
+    sessionCheckerLoginLideres,
+    sessionCheckerLideres
 };

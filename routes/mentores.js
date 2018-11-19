@@ -121,7 +121,7 @@ router.get('/contenido-adicional', sessionCheckerMentores, function(req, res, ne
     title: 'Mentores - Contenido adicional',
     section: 'contenido-adicional',
     headerFile: 'header',
-    cssFiles: [],
+    cssFiles: ['modulo/modulo'],
     jsFiles: []
   }
   res.render('mentores/default-view', options);

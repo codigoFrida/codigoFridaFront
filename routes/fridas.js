@@ -117,7 +117,7 @@ router.get('/contenido-adicional', sessionCheckerFridas, function(req, res, next
     title: 'Fridas - Contenido adicional',
     section: 'contenido-adicional',
     headerFile: 'header',
-    cssFiles: [],
+    cssFiles: ['modulo/modulo'],
     jsFiles: []
   }
   res.render('fridas/default-view', options);
