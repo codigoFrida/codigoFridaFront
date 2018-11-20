@@ -18,7 +18,7 @@ router.get('/', setHeaderFile, function(req, res, next) {
   const options = {
     apiUrl: global.apiUrl,
     baseUrl: global.baseUrl,
-    title: 'Código Frida - lideres',
+    title: 'Código Frida - Líderes',
     section: 'index',
     headerFile: headerFile,
     cssFiles: [],
@@ -45,7 +45,7 @@ router.get('/fridas',sessionCheckerLideres, function(req, res, next) {
   const options = {
     apiUrl: global.apiUrl,
     baseUrl: global.baseUrl,
-    title: 'Lideres - Fridas',
+    title: 'Líderes - Fridas',
     section: 'fridas',
     headerFile: 'header',
     cssFiles: [],
@@ -62,7 +62,7 @@ router.get('/equipos', sessionCheckerLideres, function(req, res, next) {
     section: 'equipos',
     headerFile: 'header',
     cssFiles: ['equipos/equipos'],
-    jsFiles: []
+    jsFiles: ['lideres/equipos']
   }
   res.render('lideres/default-view', options);
 });
@@ -71,7 +71,7 @@ router.get('/mi-perfil', sessionCheckerLideres, function(req, res, next) {
   const options = {
     apiUrl: global.apiUrl,
     baseUrl: global.baseUrl,
-    title: 'Lideres - Perfil',
+    title: 'Líderes - Perfil',
     section: 'mi-perfil',
     headerFile: 'header',
     cssFiles: ['mi-perfil/perfil'],
@@ -84,7 +84,7 @@ router.get('/registro', sessionCheckerLideres, function(req, res, next) {
   const options = {
     apiUrl: global.apiUrl,
     baseUrl: global.baseUrl,
-    title: 'Lideres - registro',
+    title: 'Líderes - Registro',
     section: 'registro',
     headerFile: 'header',
     cssFiles: [],

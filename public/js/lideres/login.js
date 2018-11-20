@@ -10,14 +10,25 @@ function loginUser() {
 }
 
 function login(dataObject) {
-    //TODO
-    //POST function to login
-    $.post('http://127.0.0.1:3000/lideres/iniciarSesion', dataObject)
-    .done((result) => {
-        console.log(result)
-        sessionStorage.rol = 'lideres';
-        location.href = result.targetUrl;
-    })
+    $.post(`${localStorage.apiUrl}sesiones`, dataObject)
+        .done((result) => {
+            sessionStorage.token = result.token;
+            sessionStorage.rol = 'lideres';
+            localLogin(dataObject);
+        })
+        .fail((error) => {
+            alert(error.responseJSON.message)
+        });
+}
+
+function localLogin(dataObject) {
+    $.post(`${localStorage.baseUrl}/lideres/iniciarSesion`, dataObject)
+        .done((result) => {
+            location.href = result.targetUrl;
+        })
+        .fail((error) => {
+            console.log(error)
+        });
 }
 
 $(document).ready(function() {
