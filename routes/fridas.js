@@ -92,7 +92,7 @@ router.get('/modulos/:id', sessionCheckerFridas, function(req, res, next) {
     idModulo: id,
     headerFile: 'header',
     cssFiles: ['modulo/modulo'],
-    jsFiles: ['bootstrap/bootstrap-filestyle.min']
+    jsFiles: ['bootstrap/bootstrap-filestyle.min','fridas/modulo']
   }
   res.render('fridas/default-view', options);
 });

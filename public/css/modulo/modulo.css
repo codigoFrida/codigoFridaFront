@@ -1,8 +1,6 @@
-#divContenedorModulo
-{
+#divContenedorModulo {
   width: 90%;
 }
-#divContenido
-{
+.contenido {
   border: 1px solid gray;
 }
