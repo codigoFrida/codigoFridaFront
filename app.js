@@ -30,9 +30,9 @@ app.use(session({
   secret: 'c0d1g0Fr1d4Fr0nt',
   resave: false,
   saveUninitialized: true,
-  cookie: { 
+  cookie: {
     expires: 60000*5,
-    secure: false 
+    secure: false
   }
 }));
 
