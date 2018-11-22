@@ -1,56 +1,56 @@
 <main>
-    <div id="divContenedorModulo"class="container">
-      <div class="row">
-        <div class="col">
-          <h1>Módulo <span id="idModulo"></span> - <span id="nombre" class="text-secondary">Herramientas CASE</span> </h1>
+  <div id="divContenedorModulo" class="container">
+    <div class="row">
+      <div class="col">
+        <h1>Módulo <span id="idModulo"></span> -
+          <span id="nombre" class="text-secondary"></span>
+        </h1>
+      </div>
+      <div class="col-12">
+        <p id="descripcion"></p>
+      </div>
+    </div>
+  </div>
+</main>
+<template id="plantillaBtnMaterial">
+  <a href="#" target="_blank" class="btn btn-primary btnMaterial"></a>
+</template>
+<template id="plantillaInputEjercicio">
+  <h5>Subir ejercicio</h5>
+  <small>Una vez subido el archivo, no se podrán hacer cambios.</small>
+  <form class="form-row my-2">
+    <div class="col-sm-12 div-input">
+      <input name="ejercicio" type="file" class="filestyle">
+    </div>
+  </form>
+</template>
+<template id="plantillaEjercicio">
+  <h5>Ejercicio</h5>
+  <p id="descripcion"></p>
+</template>
+<template id="plantillaContenido">
+  <div class="contenido container my-3 p-4">
+    <div class="row no-gutters m-2">
+      <h2>Contenido <span class="numeroContenido">1</span></h2>
+      <div class="col-12 my-2">
+        <p class="descripcion"></p>
+        <div class="contenedorBtns">
         </div>
-        <div class="col-12">
-          <p id="descripcion"></p>
+        <div class="contenedorEjercicio"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col m-2">
+        <div class="m-2 d-flex flex-wrap justify-content-end">
+          <button id="btnVerComentariosN" type="button" class="btn btn-light" name="button" data-toggle="modal"
+            data-target="#modalComentarios">Ver Comentarios</button>
         </div>
       </div>
-      <template id="plantillaBtnMaterial">
-        <button type="button" name="button" class="btn btn-primary mr-2 btnMaterial">
-        </button>
-      </template>
-      <template id="plantillaContenido">
-       <div class="contenido container my-3 p-4">
-         <div class="row m-2">
-           <h2>Contenido <span class="numeroContenido">1</span></h2>
-         </div>
-         <div class="row m-2">
-           <p class="descripcion">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-         </div>
-         <div class="row ">
-           <div class="col m-2 contenedorBtns">
-           </div>
-         </div>
-         <div class="row m-2">
-           <h5>Ejercicio</h5>
-         </div>
-         <div class="row m-2">
-           <p id="ejercicioInstruccionesN">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-         </div>
-         <div class="row">
-           <div class="col m-2">
-             <div class="row m-2">
-               <h5>Subir ejercicio</h5>
-             </div>
-             <div class="row">
-               <div class="col-sm-6 div-input">
-                 <input type="file" class="filestyle" data-text="Explorar">
-               </div>
-           </div>
-           <div class="m-2 d-flex flex-wrap justify-content-end">
-               <button id="btnVerComentariosN" type="button" class="btn btn-light" name="button" data-toggle="modal" data-target="#modalComentarios">Ver Comentario</button>
-           </div>
-         </div>
- 
-         </div>
-       </div>
-      </template>
-      <%- include('modals/comentarios.ejs') %>
+
     </div>
-</main>
+  </div>
+</template>
+<%- include('modals/comentarios.ejs') %>
 <script>
   const idModulo = "<%= idModulo %>";
 </script>
