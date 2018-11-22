@@ -14,6 +14,12 @@ function setActiveNavbarOption(actualPage) {
     $(`li[data-section="${actualPage}"]`).addClass('active');
 }
 
+function initFileStyle() {
+    $(":file").filestyle({
+        text: 'Examinar'
+    });
+}
+
 function validateForm() {
     const forms = document.getElementsByClassName('needs-validation');
     const validation = Array.prototype.filter.call(forms, function(form) {
