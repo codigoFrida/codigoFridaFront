@@ -34,7 +34,7 @@ router.get('/registro', sessionCheckerLoginFridas, function(req, res, next) {
     section: 'registro',
     headerFile: 'headerLogin',
     cssFiles: ['login/login'],
-    jsFiles: ['bootstrap/bootstrap-filestyle.min','fridas/registro']
+    jsFiles: ['fridas/registro']
   }
   res.render('fridas/default-view', options);
 });
@@ -92,7 +92,7 @@ router.get('/modulos/:id', sessionCheckerFridas, function(req, res, next) {
     idModulo: id,
     headerFile: 'header',
     cssFiles: ['modulo/modulo'],
-    jsFiles: ['bootstrap/bootstrap-filestyle.min','fridas/modulo']
+    jsFiles: ['fridas/modulo']
   }
   res.render('fridas/default-view', options);
 });
