@@ -1,15 +1,12 @@
 function getModules() {
-	console.log(localStorage.apiUrl+'modulos')
 	const paramsObj = {
 		url: `${localStorage.apiUrl}modulos`,
-		dataObject: {},
 		method: 'GET'
 	}
 	$.ajax(setRequestParams(paramsObj))
   	.done((data) => {
   		const modulesHtml = getModulesHtml(data);
   		$('#divModulos').html(modulesHtml);
-	    console.log(data);
 	})
 	.fail((error) => {
 		console.log(error)
@@ -34,7 +31,6 @@ function getModulesHtml(modules) {
     				</div>
     			</div>`;
 	});
-	console.log(modulesHtml);
 	return modulesHtml.join('');
 }
 
