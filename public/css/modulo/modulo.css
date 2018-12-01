@@ -4,3 +4,8 @@
 .contenido {
   border: 1px solid gray;
 }
+
+.btnMaterial {
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
