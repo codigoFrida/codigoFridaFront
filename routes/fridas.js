@@ -105,7 +105,7 @@ router.get('/mi-equipo', sessionCheckerFridas, function(req, res, next) {
     section: 'mi-equipo',
     headerFile: 'header',
     cssFiles: ['equipos/equipos'],
-    jsFiles: []
+    jsFiles: ['fridas/mi-equipo']
   }
   res.render('fridas/default-view', options);
 });
@@ -118,7 +118,7 @@ router.get('/contenido-adicional', sessionCheckerFridas, function(req, res, next
     section: 'contenido-adicional',
     headerFile: 'header',
     cssFiles: ['modulo/modulo'],
-    jsFiles: []
+    jsFiles: ['fridas/contenido-adicional']
   }
   res.render('fridas/default-view', options);
 });
