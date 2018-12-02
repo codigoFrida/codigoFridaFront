@@ -1,8 +1,9 @@
 function setRequestParams(paramsObj) {
-    const { url, dataObject } = paramsObj;
+    const { url, dataObject, method } = paramsObj;
     return {
         url: url, 
-        data: dataObject,
+        data: dataObject || {},
+        method: method || 'GET',
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Authorization', sessionStorage.token);
         }
@@ -11,6 +12,12 @@ function setRequestParams(paramsObj) {
 
 function setActiveNavbarOption(actualPage) {
     $(`li[data-section="${actualPage}"]`).addClass('active');
+}
+
+function initFileStyle() {
+    $(":file").filestyle({
+        text: 'Examinar'
+    });
 }
 
 function validateForm() {

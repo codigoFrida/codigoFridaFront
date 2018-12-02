@@ -34,7 +34,7 @@ router.get('/registro', sessionCheckerLoginFridas, function(req, res, next) {
     section: 'registro',
     headerFile: 'headerLogin',
     cssFiles: ['login/login'],
-    jsFiles: ['bootstrap/bootstrap-filestyle.min','fridas/registro']
+    jsFiles: ['fridas/registro']
   }
   res.render('fridas/default-view', options);
 });
@@ -92,7 +92,7 @@ router.get('/modulos/:id', sessionCheckerFridas, function(req, res, next) {
     idModulo: id,
     headerFile: 'header',
     cssFiles: ['modulo/modulo'],
-    jsFiles: ['bootstrap/bootstrap-filestyle.min']
+    jsFiles: ['fridas/modulo']
   }
   res.render('fridas/default-view', options);
 });
@@ -105,7 +105,7 @@ router.get('/mi-equipo', sessionCheckerFridas, function(req, res, next) {
     section: 'mi-equipo',
     headerFile: 'header',
     cssFiles: ['equipos/equipos'],
-    jsFiles: []
+    jsFiles: ['fridas/mi-equipo']
   }
   res.render('fridas/default-view', options);
 });
@@ -118,7 +118,7 @@ router.get('/contenido-adicional', sessionCheckerFridas, function(req, res, next
     section: 'contenido-adicional',
     headerFile: 'header',
     cssFiles: ['modulo/modulo'],
-    jsFiles: []
+    jsFiles: ['fridas/contenido-adicional']
   }
   res.render('fridas/default-view', options);
 });

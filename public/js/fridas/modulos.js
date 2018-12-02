@@ -1,18 +1,16 @@
 function getModules() {
-	console.log(localStorage.apiUrl+'modulos')
 	const paramsObj = {
 		url: `${localStorage.apiUrl}modulos`,
-		dataObject: {}
+		method: 'GET'
 	}
 	$.ajax(setRequestParams(paramsObj))
   	.done((data) => {
   		const modulesHtml = getModulesHtml(data);
   		$('#divModulos').html(modulesHtml);
-	    console.log(data);
-		})
-		.fail((error) => {
-			console.log(error)
-		});
+	})
+	.fail((error) => {
+		console.log(error)
+	});
 }
 
 function getModulesHtml(modules) {
@@ -24,16 +22,15 @@ function getModulesHtml(modules) {
     						<h4 class="card-title">Módulo ${numero}</h4>
     						<h6 class="card-subtitle mb-3">${nombre}</h6>
     						<p>Fecha límite: ${fechaLimite.substring(0,10)}</p>
-                <h6 class="card-subtitle mb-3">Avance:</h6>
-                <div class="progress mb-3">
-                  <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
-                </div>
+							<h6 class="card-subtitle mb-3">Avance:</h6>
+							<div class="progress mb-3">
+								<div class="progress-bar progress-bar-striped" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+							</div>
     						<a href="${localStorage.baseUrl}/fridas/modulos/${id}" class="btn btn-info btn-sm btn-block">Ver módulo</a>
     					</div>
     				</div>
     			</div>`;
 	});
-	console.log(modulesHtml);
 	return modulesHtml.join('');
 }
 

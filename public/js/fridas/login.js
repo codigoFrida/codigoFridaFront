@@ -12,6 +12,8 @@ function loginUser() {
 function login(dataObject) {
     $.post(`${localStorage.apiUrl}sesiones`, dataObject)
         .done((result) => {
+            console.log(JSON.stringify(result))
+            sessionStorage.idEquipo = result.equipo;
             sessionStorage.token = result.token;
             sessionStorage.rol = 'fridas';
             localLogin(dataObject);
