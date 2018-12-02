@@ -62,7 +62,7 @@ router.get('/equipos', sessionCheckerLideres, function(req, res, next) {
     section: 'equipos',
     headerFile: 'header',
     cssFiles: ['equipos/equipos'],
-    jsFiles: ['lideres/equipos']
+    jsFiles: ['lideres/equipos','lideres/fridas']
   }
   res.render('lideres/default-view', options);
 });
