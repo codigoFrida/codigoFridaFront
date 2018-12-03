@@ -2,7 +2,7 @@ var aditionalContent = null;
 
 function getAditionalContent() {
 	const paramsObj = {
-		url: `${localStorage.apiUrl}conteidoAdicional`,
+		url: `${localStorage.apiUrl}contenidoAdicional`,
 		method: 'GET'
 	}
 	$.ajax(setRequestParams(paramsObj))
