@@ -35,7 +35,7 @@ router.get('/modulos', sessionCheckerLideres, function(req, res, next) {
     title: 'Lideres - Módulos',
     section: 'modulos',
     headerFile: 'header',
-    cssFiles: [],
+    cssFiles: ['modulo/modulos'],
     jsFiles: ['lideres/modulos']
   }
   res.render('lideres/default-view', options);
