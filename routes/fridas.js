@@ -33,8 +33,8 @@ router.get('/registro', sessionCheckerLoginFridas, function(req, res, next) {
     title: 'Fridas - Registro',
     section: 'registro',
     headerFile: 'headerLogin',
-    cssFiles: ['login/login'],
-    jsFiles: ['fridas/registro']
+    cssFiles: ['croppie','login/login'],
+    jsFiles: ['croppie.min','fridas/registro']
   }
   res.render('fridas/default-view', options);
 });
