@@ -45,6 +45,10 @@ main {
   padding: 3px 1rem 0 1rem;
 }
 
+.bg-danger-light {
+  background-color: #ffc1c7 !important;
+}
+
 footer {
   font-size: 12px;
   text-align: center;
