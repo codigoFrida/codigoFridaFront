@@ -13,9 +13,11 @@ function login(dataObject) {
     $.post(`${localStorage.apiUrl}sesiones`, dataObject)
         .done((result) => {
             console.log(JSON.stringify(result))
+            sessionStorage.nombreUsuario = `${result.nombre} ${result.apPaterno}`;
             sessionStorage.idEquipo = result.equipo;
             sessionStorage.token = result.token;
             sessionStorage.rol = 'fridas';
+            sessionStorage.idUsuario = result.id;
             localLogin(dataObject);
         })
         .fail((error) => {

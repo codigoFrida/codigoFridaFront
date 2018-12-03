@@ -1,5 +1,5 @@
 global.baseUrl = 'http://127.0.0.1:3000';
-global.apiUrl = 'http://casabi.ddns.net:5000/api/';
+global.apiUrl = 'http://ventascatalogo.xyz:5000/api/';
 
 var createError = require('http-errors');
 var express = require('express');

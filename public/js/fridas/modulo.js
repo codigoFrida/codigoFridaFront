@@ -8,23 +8,12 @@ function getModule() {
 	$.ajax(setRequestParams(paramsObj))
   	.done((data) => {
         module = data;
-        module.contenidos[0].material = [
-            {
-                id: 1,
-                urlDescarga: 'fjdklsa;.com',
-                nombreArchivo: 'Presentación Fridas'
-            },
-            {
-                id: 2,
-                urlDescarga: 'fjdklsa;.com',
-                nombreArchivo: 'Ecología de medios'
-            }
-        ]
         showModule();
         showContent(module.contenidos);
     })
     .fail((error) => {
         console.log(error)
+        alert({texto: 'No se pudo cargar la información del módulo, inténtalo más tarde por favor.'});
     });
 }
 
@@ -37,21 +26,26 @@ function showModule() {
 
 function showContent(contents, $template = $('#plantillaContenido')) {
     const $contentTemplate = $($template.html());
-    const $contents = contents.map(({id, descripcion, archivoSubido, material, ejercicio, comentarios}, index) => {
+    const $contents = contents.map(({id, descripcion, material, ejercicio, comentarios}, index) => {
         const $clonedTemplate = $contentTemplate.clone();
         $clonedTemplate.find('.numeroContenido').html(index + 1);
         $clonedTemplate.find('.descripcion').html(descripcion);
         $clonedTemplate.find('.contenedorBtns').append(setMaterialsBtn(material));
-        $clonedTemplate.find('.contenedorEjercicio').append(cloneExerciseTemplate(ejercicio));
+        $clonedTemplate.find('.contenedorEjercicio')
+            .append(cloneExerciseTemplate({idContenido: id, posContenido: index, comentarios, ...ejercicio}));
         return $clonedTemplate;
     });
     $('#divContenedorModulo').append($contents);
     initFileStyle();
+    submitFileEvent();
 }
 
 function setMaterialsBtn(materials) {
-    const $materialTemplate = $($template.html());
-    return materials.map((material) => {
+    return materials.map(({urlDescarga, nombreArchivo}) => {
+        const material = {
+            urlDescarga: `${localStorage.publicUrl}materiales/${nombreArchivo}`,
+            nombreArchivo
+        }
         return cloneMaterialBtn(material);
     });
 }
@@ -60,37 +54,173 @@ function cloneMaterialBtn(material, $template = $('#plantillaBtnMaterial')) {
     const { urlDescarga, nombreArchivo } = material;
     const $materialTemplate = $($template.html());
     const $clonedTemplate = $materialTemplate.clone();
-    $clonedTemplate.attr('href', urlDescarga);
-    $clonedTemplate.html(nombreArchivo);
+    $clonedTemplate.find('a')
+        .attr('href', urlDescarga)
+        .attr('download', nombreArchivo)
+    $clonedTemplate.find('.nombreArchivo').html(nombreArchivo);
     return $clonedTemplate;
 }
 
 function cloneExerciseTemplate(exercise, $template = $('#plantillaEjercicio')) {
-    exercise = {
-        id: 1,
-        descripcion: 'En este módulo identificarás un problema social a partir de la reflexión de tu contexto inmediato. Para ello conocerás los Objetivos de Desarrollo Sostenible (ODS), impulsados por la Organización de las Naciones Unidas (ONU) y la importancia de generar estrategias de solución rumbo a la Agenda 2030. Al finalizar, redactarás el problema y destacarás por qué es vital abordarlo.',
-        urlDescarga: ''
-    }
     const $exerciseTemplate = $($template.html());
     const $clonedTemplate = $exerciseTemplate.clone();
-    const { id, descripcion, urlDescarga } = exercise;
-    const nombreArchivo = `Ejercicio ${id}`;
+    const { descripcion, archivoSubido, idContenido, posContenido } = exercise;
+    const nombreArchivo = `Ejercicio ${idContenido}`;
     $clonedTemplate.find('.descripcion').html(descripcion);
-    if (urlDescarga) {
-        $clonedTemplate.append(cloneMaterialBtn({urlDescarga, nombreArchivo}));        
+    if (archivoSubido) {
+        const urlDescarga = `${localStorage.publicUrl}ejercicios/${archivoSubido}`;
+        $clonedTemplate.find('.contenedorBtnsEjercicio')
+            .append(cloneMaterialBtn({urlDescarga, nombreArchivo}))
+            .append(cloneCommentsBtn({idContent: idContenido, posContent: posContenido}));        
     } else {
-        $clonedTemplate.append(cloneExerciseInputTemplate(id));
+        $clonedTemplate.append(cloneExerciseInputTemplate(idContenido));
     }
     return $clonedTemplate;
+}
+
+function cloneCommentsBtn({idContent, posContent}, $template = $('#plantillaBtnComentarios')) {
+    const $exerciseInputTemplate = $($template.html());
+    const $clonedTemplate = $exerciseInputTemplate.clone();
+    $clonedTemplate.find('.btnVerComentarios')
+        .attr('data-idContenido', idContent)
+        .attr('data-posContenido', posContent);
+    return $clonedTemplate;
+}
+
+function showCommentsEvent() {
+    $('#modalComentarios').on('show.bs.modal', function (e) {
+        const $btnTriggered = $(e.relatedTarget);
+        const idContent = $btnTriggered.attr('data-idContenido');
+        const posContent = $btnTriggered.attr('data-posContenido');
+        const comments = module.contenidos[posContent].comentarios || [];
+        $('#numeroContenido').html(Number(posContent) + 1)
+        $('#frmComentario').attr('data-idContenido', idContent)
+        $('#frmComentario').attr('data-posContenido', posContent)
+        showComments(comments);
+    });
+    submitCommentEvent();
+}
+
+function showComments(comments, $template = $('#plantillaComentario')) {
+    const $exerciseInputTemplate = $($template.html());
+    const commentsArray = comments.map(({autor, fecha, comentario}) => {
+        const $clonedTemplate = $exerciseInputTemplate.clone();
+        $clonedTemplate.find('.autor').html(autor);
+        $clonedTemplate.find('.fecha').html(fecha);
+        $clonedTemplate.find('.texto').html(comentario);
+        return $clonedTemplate;
+    });
+    if (commentsArray.length)
+        $('#contenedorComentarios').html(commentsArray);
+    else
+        $('#contenedorComentarios').html('<h6>Aún no hay comentarios para este ejercicio.</h6>');
 }
 
 function cloneExerciseInputTemplate(exerciseId, $template = $('#plantillaInputEjercicio')) {
     const $exerciseInputTemplate = $($template.html());
     const $clonedTemplate = $exerciseInputTemplate.clone();
-    $clonedTemplate.find('input').data('id', exerciseId);
+    $clonedTemplate.find('.frmArchivo').attr('data-idContenido', exerciseId);
     return $clonedTemplate;
 }
 
+function getSelectedFile(idContenido, callback) {
+    const inputTarget = $(`.frmArchivo[data-idContenido="${idContenido}"] input[type=file]`)[0];
+    const file = inputTarget.files[0];
+    try {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function(event) {  
+            let fileData = event.target.result;
+            const commaPosition = fileData.indexOf(',') + 1;
+            fileData = fileData.substring(commaPosition, fileData.length - 1);
+            fileObject = {
+                filename: file.name,
+                data: fileData
+            };
+            callback(fileObject);
+        };  
+    } catch(err) {
+        alert({tipo: 'info', texto: 'Selecciona un archivo, por favor.'});
+    }
+}
+
+function submitFileEvent() {
+    $(".frmArchivo").submit(function(e) {
+        e.preventDefault();
+        const idContenido = $(this).attr('data-idContenido');
+        getSelectedFile(idContenido, ({filename, data}) => {
+            const fileObj = {
+                idEquipo: sessionStorage.idEquipo,
+                idUsuario: sessionStorage.idUsuario,
+                nombreArchivo: filename,
+                archivo: data
+            }
+            postExerciseFile(idContenido, fileObj);
+        })
+    });
+}
+
+function postExerciseFile(idContenido, fileObject) {
+	const paramsObj = {
+        url: `${localStorage.apiUrl}modulos/${idModulo}/contenido/${idContenido}/ejercicio`,
+        dataObject: fileObject,
+		method: 'POST'
+	}
+	$.ajax(setRequestParams(paramsObj))
+  	.done((data) => {
+        alert({
+            tipo: 'success',
+            texto: 'El archivo se subió con éxito.'
+        });
+    })
+    .fail((error) => {
+        console.log(error)
+        alert({texto: 'No se pudo subir el archivo, inténtalo más tarde por favor.'});
+    });
+}
+
+function submitCommentEvent() {
+    $("#frmComentario").submit(function(e) {
+        e.preventDefault();
+        const idContent = $(this).attr('data-idContenido');
+        const posContent = $(this).attr('data-posContenido');
+        const comentario = $('#comentarioEjercicio').val();
+        const dataObject = {
+            autor: sessionStorage.idUsuario,
+            comentario
+        }
+        postComment(idContent, dataObject, posContent);
+    });
+}
+
+function postComment(idContenido, dataObject, posContent) {
+	const paramsObj = {
+        url: `${localStorage.apiUrl}modulos/${idModulo}/contenido/${idContenido}/ejercicio`,
+        dataObject: dataObject,
+		method: 'POST'
+	}
+	$.ajax(setRequestParams(paramsObj))
+  	.done((data) => {
+        const comment = {
+            autor: sessionStorage.nombreUsuario,
+            fecha: moment().format('YYYY-MM-DD'),
+            comentario: dataObject.comentario
+        }
+        const moduleComments = module.contenidos[posContent].comentarios;
+        moduleComments.push(comment);
+        showComments(moduleComments);
+        alert({
+            tipo: 'success',
+            texto: 'El comentario se guardó con éxito.'
+        });
+    })
+    .fail((error) => {
+        console.log(error)
+        alert({texto: 'No se pudo guardar el comentario, inténtalo más tarde por favor.'});
+    });
+}
+
 $(document).ready(function() {
-	getModule();
+    getModule();
+    showCommentsEvent();
 });
