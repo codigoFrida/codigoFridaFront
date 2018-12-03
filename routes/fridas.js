@@ -131,7 +131,7 @@ router.get('/mi-perfil', sessionCheckerFridas, function(req, res, next) {
     section: 'mi-perfil',
     headerFile: 'header',
     cssFiles: ['mi-perfil/perfil'],
-    jsFiles: ['bootstrap/bootstrap-filestyle.min']
+    jsFiles: ['fridas/mi-perfil']
   }
   res.render('fridas/default-view', options);
 });
