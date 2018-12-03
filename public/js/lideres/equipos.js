@@ -100,6 +100,8 @@ function getTeamsHtml(teams){
     	    						<div class="progress">
     									  <div class="progress-bar progress-bar-striped" role="progressbar" style="width: ${avance}%;" aria-valuenow="${avance}" aria-valuemin="0" aria-valuemax="100">${avance}%</div>
     									</div>
+                      <br>
+                      <a href="${localStorage.baseUrl}/lideres/equipos/${id}" class="btn btn-info btn-sm btn-block">Ver equipo</a>
     	    					</div>
     	    				</div>
     	    			</div>`;

@@ -25,7 +25,7 @@ function getFridas() {
 	}
 	$.ajax(setRequestParams(paramsObj))
   	.done((data) => {
-      data = variableTemporal2;
+      // data = variableTemporal2;
   		const fridasHtml = getFridasHtml(data);
   		$('#divFridas').html(fridasHtml);
 	    console.log(data);
