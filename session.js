@@ -66,7 +66,7 @@ var sessionCheckerLideres = (req, res, next) => {
     } else {
         if (req.originalUrl.match('lideres'))
             global.targetUrl = `${global.baseUrl}/lideres${req.url}`;
-        res.redirect(`${global.baseUrl}/lideres/iniciar-sesion`);
+        res.redirect(`${global.baseUrl}/lideres/inicio-sesion`);
     }
 };
 

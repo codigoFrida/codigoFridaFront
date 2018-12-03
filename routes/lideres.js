@@ -75,7 +75,7 @@ router.get('/mi-perfil', sessionCheckerLideres, function(req, res, next) {
     section: 'mi-perfil',
     headerFile: 'header',
     cssFiles: ['mi-perfil/perfil'],
-    jsFiles: []
+    jsFiles: ['lideres/mi-perfil']
   }
   res.render('lideres/default-view', options);
 });
@@ -106,12 +106,12 @@ router.get('/contenido-adicional', sessionCheckerLideres, function(req, res, nex
   res.render('lideres/default-view', options);
 });
 
-router.get('/iniciar-sesion', sessionCheckerLoginLideres, function(req, res, next) {
+router.get('/inicio-sesion', sessionCheckerLoginLideres, function(req, res, next) {
   const options = {
     apiUrl: global.apiUrl,
     baseUrl: global.baseUrl,
     title: 'Líderes - Login',
-    section: 'iniciar-sesion',
+    section: 'inicio-sesion',
     headerFile: 'headerLogin',
     cssFiles: ['login/login'],
     jsFiles: ['lideres/login']
