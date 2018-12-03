@@ -15,16 +15,16 @@ function getModules() {
 
 function getModulesHtml(modules) {
 	const modulesHtml = modules.map((module) => {
-		const { id, nombre, numero, fechaLimite } = module;
+		const { id, nombreModulo, numero, fechaLimite, progreso } = module;
 		return `<div class="col-md-6 col-lg-4 mb-4">
     				<div class="card">
     					<div class="card-body">
     						<h4 class="card-title">Módulo ${numero}</h4>
-    						<h6 class="card-subtitle mb-3">${nombre}</h6>
+    						<h6 class="card-subtitle mb-3">${nombreModulo}</h6>
     						<p>Fecha límite: ${fechaLimite.substring(0,10)}</p>
 							<h6 class="card-subtitle mb-3">Avance:</h6>
 							<div class="progress mb-3">
-								<div class="progress-bar progress-bar-striped" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+								<div class="progress-bar progress-bar-striped" role="progressbar" style="width: ${progreso}%;" aria-valuenow="${progreso}" aria-valuemin="0" aria-valuemax="100">${progreso}%</div>
 							</div>
     						<a href="${localStorage.baseUrl}/fridas/modulos/${id}" class="btn btn-info btn-sm btn-block">Ver módulo</a>
     					</div>
