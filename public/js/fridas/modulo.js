@@ -103,10 +103,10 @@ function showCommentsEvent() {
 
 function showComments(comments, $template = $('#plantillaComentario')) {
     const $exerciseInputTemplate = $($template.html());
-    const commentsArray = comments.map(({autor, fecha, comentario}) => {
+        const commentsArray = comments.map(({nombreAutor, fecha, comentario}) => {
         const $clonedTemplate = $exerciseInputTemplate.clone();
-        $clonedTemplate.find('.autor').html(autor);
-        $clonedTemplate.find('.fecha').html(fecha);
+        $clonedTemplate.find('.autor').html(nombreAutor);
+        $clonedTemplate.find('.fecha').html(moment(fecha).format('YYYY-MM-DD'));
         $clonedTemplate.find('.texto').html(comentario);
         return $clonedTemplate;
     });
@@ -186,7 +186,7 @@ function submitCommentEvent() {
         const posContent = $(this).attr('data-posContenido');
         const comentario = $('#comentarioEjercicio').val();
         const dataObject = {
-            autor: sessionStorage.idUsuario,
+            idUsuario: sessionStorage.idUsuario,
             comentario
         }
         postComment(idContent, dataObject, posContent);
@@ -195,14 +195,14 @@ function submitCommentEvent() {
 
 function postComment(idContenido, dataObject, posContent) {
 	const paramsObj = {
-        url: `${localStorage.apiUrl}modulos/${idModulo}/contenido/${idContenido}/ejercicio`,
+        url: `${localStorage.apiUrl}modulos/${idModulo}/contenido/${idContenido}/comentario`,
         dataObject: dataObject,
 		method: 'POST'
 	}
 	$.ajax(setRequestParams(paramsObj))
   	.done((data) => {
         const comment = {
-            autor: sessionStorage.nombreUsuario,
+            nombreAutor: sessionStorage.nombreUsuario,
             fecha: moment().format('YYYY-MM-DD'),
             comentario: dataObject.comentario
         }
