@@ -38,7 +38,6 @@ function getModulesHtml(modules) {
 }
 
 function validateModule(limitDate, progress) {
-	console.log(limitDate, moment().isAfter(limitDate))
 	if (moment().isAfter(limitDate) && progress < 100)
 		return false;
 	return true;
