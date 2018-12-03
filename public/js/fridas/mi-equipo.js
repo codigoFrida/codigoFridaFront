@@ -19,6 +19,13 @@ function getTeam() {
     });
 }
 
+function setProfileImage(imageUrl) {
+    if (imageUrl.length > 5)
+        return `${localStorage.publicUrl}img/${imageUrl}.jpg`;
+    else
+        return "/img/image.jpeg";
+}
+
 function showTeam() {
     const { id, nombre, codigo } = team;
     $('#idModulo').text(id)
@@ -31,7 +38,7 @@ function showMentors(contents, $template = $('#plantillaMentor')) {
     const $mentors = contents.map(({nombre, apPaterno, apMaterno, correo, fotografia}, index) => {
         const $clonedTemplate = $mentorTemplate.clone();
 
-        $clonedTemplate.find('.imgPerfil').attr("src",(fotografia.length>5)?fotografia:"/img/image.jpeg");
+        $clonedTemplate.find('.imgPerfil').attr("src", setProfileImage(fotografia));
         $clonedTemplate.find('.nombre').append(`${nombre} ${apPaterno} ${apMaterno}`);
         $clonedTemplate.find('.correo').append(correo);
         return $clonedTemplate;
@@ -45,7 +52,7 @@ function showTeamMembers(contents, $template = $('#plantillaIntegrante')) {
     const member = contents.map(({nombre, apPaterno, apMaterno, correo, fotografia, fechaNacimiento}, index) => {
         const $clonedTemplate = $teamMemberTemplate.clone();
 
-        $clonedTemplate.find('.imgPerfil').attr("src",(fotografia.length>5)?fotografia:"/img/image.jpeg");
+        $clonedTemplate.find('.imgPerfil').attr("src", setProfileImage(fotografia));
         $clonedTemplate.find('.nombre').append(`${nombre} ${apPaterno} ${apMaterno}`);
         $clonedTemplate.find('.correo').append(correo);
         $clonedTemplate.find('.edad').append(calcAge(fechaNacimiento));

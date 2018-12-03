@@ -75,7 +75,7 @@ router.get('/modulos', sessionCheckerFridas, function(req, res, next) {
     title: 'Fridas - Módulos',
     section: 'modulos',
     headerFile: 'header',
-    cssFiles: [],
+    cssFiles: ['modulo/modulos'],
     jsFiles: ['fridas/modulos']
   }
   res.render('fridas/default-view', options);
@@ -92,7 +92,7 @@ router.get('/modulos/:id', sessionCheckerFridas, function(req, res, next) {
     idModulo: id,
     headerFile: 'header',
     cssFiles: ['modulo/modulo'],
-    jsFiles: ['fridas/modulo']
+    jsFiles: ['fridas/modulo'],
   }
   res.render('fridas/default-view', options);
 });
@@ -131,7 +131,7 @@ router.get('/mi-perfil', sessionCheckerFridas, function(req, res, next) {
     section: 'mi-perfil',
     headerFile: 'header',
     cssFiles: ['mi-perfil/perfil'],
-    jsFiles: ['bootstrap/bootstrap-filestyle.min']
+    jsFiles: ['fridas/mi-perfil']
   }
   res.render('fridas/default-view', options);
 });
