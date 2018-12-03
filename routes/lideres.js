@@ -21,7 +21,7 @@ router.get('/', setHeaderFile, function(req, res, next) {
     title: 'Código Frida - Líderes',
     section: 'index',
     headerFile: headerFile,
-    cssFiles: [],
+    cssFiles: ['landing-page-liderF/index'],
     jsFiles: []
   }
   res.render('lideres/default-view', options);
@@ -36,7 +36,7 @@ router.get('/modulos', sessionCheckerLideres, function(req, res, next) {
     section: 'modulos',
     headerFile: 'header',
     cssFiles: [],
-    jsFiles: []
+    jsFiles: ['lideres/modulos']
   }
   res.render('lideres/default-view', options);
 });
@@ -130,7 +130,7 @@ router.post('/iniciarSesion',  function(req, res, next) {
 });
 
 router.post('/cerrarSesion', function(req, res, next) {
-  const targetUrl = `${global.baseUrl}/mentores/equipos`;
+  const targetUrl = `${global.baseUrl}/lideres/equipos`;
   req.session.user = null;
   res.json({targetUrl});
 });
@@ -163,7 +163,7 @@ router.get('/equipos/:equipo', sessionCheckerLideres, function(req, res, next) {
     idEquipo: equipo,
     headerFile: 'header',
     cssFiles: ['equipos/equipos'],
-    jsFiles: ['lideres/equipo/index']
+    jsFiles: ['lideres/equipo/index','lideres/equipo']
   }
   res.render('lideres/default-view', options);
 });
@@ -179,7 +179,7 @@ router.get('/modulos/:id', sessionCheckerLideres, function(req, res, next) {
     idModulo: id,
     headerFile: 'header',
     cssFiles: ['modulo/modulo'],
-    jsFiles: []
+    jsFiles: ['lideres/modulo']
   }
   res.render('lideres/default-view', options);
 });
