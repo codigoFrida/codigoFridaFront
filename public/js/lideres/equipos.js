@@ -30,7 +30,7 @@ const variableTemporal = [
                 nombre: 'Alejandra Peralta Escamilla'
             }
         ],
-        avance: 1
+        avance: 15
     },
     {
         id:1,
@@ -59,7 +59,7 @@ const variableTemporal = [
                 nombre: 'Andrea Muñoz Liy'
             }
         ],
-        avance: 2
+        avance: 30
     },
 ];
 
@@ -73,7 +73,7 @@ function getTeams() {
 	}
 	$.ajax(setRequestParams(paramsObj))
   	.done((data) => {
-			data = variableTemporal;
+			// data = variableTemporal;
   		const teamsHtml = getTeamsHtml(data);
   		$('#divEquipos').html(teamsHtml);
 	    console.log(data);
@@ -85,18 +85,18 @@ function getTeams() {
 
 function getTeamsHtml(teams){
   const teamsHtml = teams.map((team) =>{
-    const { id, nombreEquipo, integrantes, mentores, avance} = team;
+    const { id, nombre, integrantes, mentores, avance} = team;
     const membersHtml = getTeamsMembersHtml(integrantes);
     const mentorsHtml = getTeamsMentorsHtml(mentores);
     return `<div class="col-md-6 mb-4">
-    	    				<div class="card">
+    	    				<div class="card" style="width: 18rem;">
     	    					<div class="card-body">
-    	    						<h4 class="card-title">Equipo ${nombreEquipo}</h4>
-                      <p>Integrantes:</p>
-    	    					   ${membersHtml}
-                       <p>Mentores:</p>
-                       ${mentorsHtml}
-    	    						<h6 class="card-subtitle mb-3">Avance:</h6>
+    	    						<h4 class="card-title">Equipo: ${nombre}</h4>
+                       <p class="font-weight-bold">Integrantes:</p>
+    	    					   <a>${membersHtml}</a>
+                       <p class="font-weight-bold">Mentores:</p>
+                       <a>${mentorsHtml}</a>
+    	    						<h6 class="card-subtitle mb-3"><p>Avance:</p></h6>
     	    						<div class="progress">
     									  <div class="progress-bar progress-bar-striped" role="progressbar" style="width: ${avance}%;" aria-valuenow="${avance}" aria-valuemin="0" aria-valuemax="100">${avance}%</div>
     									</div>
@@ -130,6 +130,8 @@ function getTeamsMentorsHtml(mentors)
   console.log(teamsMentorsHtml);
   return teamsMentorsHtml.join('');
 }
+
+
 
 $(document).ready(function() {
 	getTeams();
