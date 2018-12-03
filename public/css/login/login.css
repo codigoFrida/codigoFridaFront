@@ -34,3 +34,9 @@ h2 {
 #divInputEquipoNombre {
     display: none;
 }
+
+#editorImagen {
+    height: 200px;
+    margin: 40px;
+    width: 200px;
+}

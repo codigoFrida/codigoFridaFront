@@ -14,16 +14,20 @@ var sessionCheckerLoginFridas = (req, res, next) => {
 
 // Middleware function to check for logged-in Fridas users
 var sessionCheckerFridas = (req, res, next) => {
-    if (req.session.user && req.cookies.user_sid) {
-        if (req.session.user.type == 'fridas')
-            next();
-        else
-            next(createError(403));
-    } else {
-        if (req.originalUrl.match('fridas'))
-            global.targetUrl = `${global.baseUrl}/fridas${req.url}`;
-        res.redirect(`${global.baseUrl}/fridas/inicio-sesion`);
-    }
+    // console.log(req.session.user, req.cookies.user_sid)
+    setTimeout(() => {
+        if (req.session.user && req.cookies.user_sid) {
+            if (req.session.user.type == 'fridas')
+                next();
+            else
+                next(createError(403));
+        } else {
+            console.log('entra else')
+            if (req.originalUrl.match('fridas'))
+                global.targetUrl = `${global.baseUrl}/fridas${req.url}`;
+            res.redirect(`${global.baseUrl}/fridas/inicio-sesion`);
+        }
+    }, 0);
 };
 
 // Middleware function to check for logged-in users
