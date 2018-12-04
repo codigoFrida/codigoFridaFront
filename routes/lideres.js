@@ -14,7 +14,7 @@ function setHeaderFile(req, res, next) {
 }
 
 /* GET Mentores listing. */
-router.get('/', setHeaderFile, function(req, res, next) {
+router.get('/', setHeaderFile, function(req, res) {
   const options = {
     apiUrl: global.apiUrl,
     baseUrl: global.baseUrl,
@@ -28,7 +28,7 @@ router.get('/', setHeaderFile, function(req, res, next) {
 });
 
 
-router.get('/modulos', sessionCheckerLideres, function(req, res, next) {
+router.get('/modulos', sessionCheckerLideres, function(req, res) {
   const options = {
     apiUrl: global.apiUrl,
     baseUrl: global.baseUrl,
@@ -41,7 +41,7 @@ router.get('/modulos', sessionCheckerLideres, function(req, res, next) {
   res.render('lideres/default-view', options);
 });
 
-router.get('/fridas',sessionCheckerLideres, function(req, res, next) {
+router.get('/fridas',sessionCheckerLideres, function(req, res) {
   const options = {
     apiUrl: global.apiUrl,
     baseUrl: global.baseUrl,
@@ -54,7 +54,7 @@ router.get('/fridas',sessionCheckerLideres, function(req, res, next) {
   res.render('lideres/default-view', options);
 });
 
-router.get('/equipos', sessionCheckerLideres, function(req, res, next) {
+router.get('/equipos', sessionCheckerLideres, function(req, res) {
   const options = {
     apiUrl: global.apiUrl,
     baseUrl: global.baseUrl,
@@ -62,12 +62,12 @@ router.get('/equipos', sessionCheckerLideres, function(req, res, next) {
     section: 'equipos',
     headerFile: 'header',
     cssFiles: ['equipos/equipos'],
-    jsFiles: ['lideres/equipos','lideres/fridas']
+    jsFiles: ['lideres/equipos']
   }
   res.render('lideres/default-view', options);
 });
 
-router.get('/mi-perfil', sessionCheckerLideres, function(req, res, next) {
+router.get('/mi-perfil', sessionCheckerLideres, function(req, res) {
   const options = {
     apiUrl: global.apiUrl,
     baseUrl: global.baseUrl,
@@ -80,20 +80,20 @@ router.get('/mi-perfil', sessionCheckerLideres, function(req, res, next) {
   res.render('lideres/default-view', options);
 });
 
-router.get('/registro', sessionCheckerLideres, function(req, res, next) {
+router.get('/registro', sessionCheckerLideres, function(req, res) {
   const options = {
     apiUrl: global.apiUrl,
     baseUrl: global.baseUrl,
     title: 'Líderes - Registro',
     section: 'registro',
     headerFile: 'header',
-    cssFiles: [],
-    jsFiles: []
+    cssFiles: ['croppie','login/login'],
+    jsFiles: ['croppie.min','lideres/registro']
   }
   res.render('lideres/default-view', options);
 });
 
-router.get('/contenido-adicional', sessionCheckerLideres, function(req, res, next) {
+router.get('/contenido-adicional', sessionCheckerLideres, function(req, res) {
   const options = {
     apiUrl: global.apiUrl,
     baseUrl: global.baseUrl,
@@ -101,12 +101,12 @@ router.get('/contenido-adicional', sessionCheckerLideres, function(req, res, nex
     section: 'contenido-adicional',
     headerFile: 'header',
     cssFiles: ['modulo/modulo'],
-    jsFiles: []
+    jsFiles: ['lideres/contenido-adicional']
   }
   res.render('lideres/default-view', options);
 });
 
-router.get('/inicio-sesion', sessionCheckerLoginLideres, function(req, res, next) {
+router.get('/inicio-sesion', sessionCheckerLoginLideres, function(req, res) {
   const options = {
     apiUrl: global.apiUrl,
     baseUrl: global.baseUrl,
@@ -119,7 +119,7 @@ router.get('/inicio-sesion', sessionCheckerLoginLideres, function(req, res, next
   res.render('lideres/default-view', options);
 });
 
-router.post('/iniciarSesion',  function(req, res, next) {
+router.post('/iniciarSesion',  function(req, res) {
   const { correo } = req.body;
   const targetUrl = global.targetUrl || `${global.baseUrl}/lideres/equipos`;
   req.session.user = {
@@ -129,13 +129,13 @@ router.post('/iniciarSesion',  function(req, res, next) {
   res.json({targetUrl});
 });
 
-router.post('/cerrarSesion', function(req, res, next) {
+router.post('/cerrarSesion', function(req, res) {
   const targetUrl = `${global.baseUrl}/lideres/equipos`;
   req.session.user = null;
   res.json({targetUrl});
 });
 
-router.get('/equipos/:equipo/modulos/:id', sessionCheckerLideres, function(req, res, next) {
+router.get('/equipos/:equipo/modulos/:id', sessionCheckerLideres, function(req, res) {
   const { equipo, id } = req.params;
   const options = {
     apiUrl: global.apiUrl,
@@ -152,7 +152,7 @@ router.get('/equipos/:equipo/modulos/:id', sessionCheckerLideres, function(req, 
   res.render('lideres/default-view', options);
 });
 
-router.get('/equipos/:equipo', sessionCheckerLideres, function(req, res, next) {
+router.get('/equipos/:equipo', sessionCheckerLideres, function(req, res) {
   const { equipo, id } = req.params;
   const options = {
     apiUrl: global.apiUrl,
@@ -168,7 +168,7 @@ router.get('/equipos/:equipo', sessionCheckerLideres, function(req, res, next) {
   res.render('lideres/default-view', options);
 });
 
-router.get('/modulos/:id', sessionCheckerLideres, function(req, res, next) {
+router.get('/modulos/:id', sessionCheckerLideres, function(req, res) {
   const { id } = req.params;
   const options = {
     apiUrl: global.apiUrl,

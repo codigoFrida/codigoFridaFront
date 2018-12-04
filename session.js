@@ -58,16 +58,18 @@ var sessionCheckerMentores = (req, res, next) => {
 
 // Middleware function to check for logged-in Lideres users
 var sessionCheckerLideres = (req, res, next) => {
-    if (req.session.user && req.cookies.user_sid) {
-        if (req.session.user.type == 'lideres')
-            next();
-        else
-            next(createError(403));
-    } else {
-        if (req.originalUrl.match('lideres'))
-            global.targetUrl = `${global.baseUrl}/lideres${req.url}`;
-        res.redirect(`${global.baseUrl}/lideres/inicio-sesion`);
-    }
+    setTimeout(() => {
+        if (req.session.user && req.cookies.user_sid) {
+            if (req.session.user.type == 'lideres')
+                next();
+            else
+                next(createError(403));
+        } else {
+            if (req.originalUrl.match('lideres'))
+                global.targetUrl = `${global.baseUrl}/lideres${req.url}`;
+            res.redirect(`${global.baseUrl}/lideres/inicio-sesion`);
+        }
+    }, 0);
 };
 
 // Middleware function to check for logged-in users
