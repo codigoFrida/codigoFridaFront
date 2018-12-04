@@ -16,6 +16,9 @@ function getTeam() {
     })
     .fail((error) => {
         console.log(error)
+        alert({
+            texto: 'No se pudo obtener información del equipo, inténtelo más tarde por favor'
+        });
     });
 }
 
@@ -37,7 +40,6 @@ function showMentors(contents, $template = $('#plantillaMentor')) {
     const $mentorTemplate = $($template.html());
     const $mentors = contents.map(({nombre, apPaterno, apMaterno, correo, fotografia}, index) => {
         const $clonedTemplate = $mentorTemplate.clone();
-
         $clonedTemplate.find('.imgPerfil').attr("src", setProfileImage(fotografia));
         $clonedTemplate.find('.nombre').append(`${nombre} ${apPaterno} ${apMaterno}`);
         $clonedTemplate.find('.correo').append(correo);
@@ -68,9 +70,8 @@ function calcAge(fechaNacimiento) {
 
 function showAchievements(contents, $template = $('#plantillaInsignia')) {
     const $achievementTemplate = $($template.html());
-    const achievement = contents.map(({nombre, descripcion, numeroModulo}, index) => {
+    const achievement = contents.map(({nombre, descripcion, numeroModulo}) => {
         const $clonedTemplate = $achievementTemplate.clone();
-
         $clonedTemplate.find('.imgPerfil').attr("src",`/img/insignias/modulo${numeroModulo}.jpeg`);
         $clonedTemplate.find('.nombre').append(nombre);
         $clonedTemplate.find('.descripcion').append(descripcion);

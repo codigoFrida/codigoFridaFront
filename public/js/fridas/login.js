@@ -12,13 +12,18 @@ function loginUser() {
 function login(dataObject) {
     $.post(`${localStorage.apiUrl}sesiones`, dataObject)
         .done((result) => {
-            console.log(JSON.stringify(result))
-            sessionStorage.nombreUsuario = `${result.nombre} ${result.apPaterno} ${result.apMaterno}`;
-            sessionStorage.idEquipo = result.equipo;
-            sessionStorage.token = result.token;
-            sessionStorage.rol = 'fridas';
-            sessionStorage.idUsuario = result.id;
-            localLogin(dataObject);
+            if(result.idRol == 1) {
+                sessionStorage.nombreUsuario = `${result.nombre} ${result.apPaterno} ${result.apMaterno}`;
+                sessionStorage.idEquipo = result.equipo;
+                sessionStorage.token = result.token;
+                sessionStorage.rol = 'fridas';
+                sessionStorage.idUsuario = result.id;
+                localLogin(dataObject);
+            } else {
+                alert({
+                    texto: "No estás registrado(a) en este rol."
+                })
+            }
         })
         .fail((error) => {
             alert(error.responseJSON.message)
