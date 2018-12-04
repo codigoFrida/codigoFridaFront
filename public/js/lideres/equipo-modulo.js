@@ -2,7 +2,7 @@ var module = null;
 
 function getModule() {
 	const paramsObj = {
-		url: `${localStorage.apiUrl}modulos/${idModulo}`,
+		url: `${localStorage.apiUrl}modulos/${idModulo}?idEquipo=${idEquipo}`,
 		method: 'GET'
 	}
 	$.ajax(setRequestParams(paramsObj))
@@ -41,13 +41,13 @@ function showContent(contents, $template = $('#plantillaContenido')) {
 }
 
 function setMaterialsBtn(materials) {
-    return materials.map(({ nombre, archivo }) => {
-      const material = {
-        urlDescarga: `${localStorage.publicUrl}materiales/${archivo}`,
-        nombreArchivo: nombre
-      }
-      return cloneMaterialBtn(material);
-    });
+  return materials.map(({ nombre, archivo }) => {
+    const material = {
+      urlDescarga: `${localStorage.publicUrl}materiales/${archivo}`,
+      nombreArchivo: nombre
+    }
+    return cloneMaterialBtn(material);
+  });
 }
 
 function cloneMaterialBtn(material, $template = $('#plantillaBtnMaterial')) {
@@ -65,7 +65,6 @@ function cloneExerciseTemplate(exercise, $template = $('#plantillaEjercicio')) {
     const $exerciseTemplate = $($template.html());
     const $clonedTemplate = $exerciseTemplate.clone();
     const { descripcion, archivo, nombre, idContenido, posContenido } = exercise;
-    console.log(exercise)
     $clonedTemplate.find('.descripcion').html(descripcion);
     if (archivo) {
         const urlDescarga = `${localStorage.publicUrl}ejercicios/${archivo}`;
@@ -73,7 +72,7 @@ function cloneExerciseTemplate(exercise, $template = $('#plantillaEjercicio')) {
             .append(cloneMaterialBtn({urlDescarga, nombreArchivo: nombre}))
             .append(cloneCommentsBtn({idContent: idContenido, posContent: posContenido}));        
     } else {
-        $clonedTemplate.append(cloneExerciseInputTemplate(idContenido));
+        $clonedTemplate.append('<p class="text-secondary"><i class="far fa-file-alt"></i> Tarea pendiente</p>');
     }
     return $clonedTemplate;
 }
@@ -186,8 +185,8 @@ function submitCommentEvent() {
         const posContent = $(this).attr('data-posContenido');
         const comentario = $('#comentarioEjercicio').val();
         const dataObject = {
-            idUsuario: sessionStorage.idUsuario,
-            idEquipo: sessionStorage.idEquipo,
+						idUsuario: sessionStorage.idUsuario,
+						idEquipo,
             comentario
         }
         postComment(idContent, dataObject, posContent);
@@ -222,6 +221,7 @@ function postComment(idContenido, dataObject, posContent) {
 }
 
 $(document).ready(function() {
+		console.log('hola')
     getModule();
     showCommentsEvent();
 });

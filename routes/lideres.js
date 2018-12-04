@@ -147,7 +147,7 @@ router.get('/equipos/:equipo/modulos/:id', sessionCheckerLideres, function(req, 
     idModulo: id,
     headerFile: 'header',
     cssFiles: ['modulo/modulo'],
-    jsFiles: ['bootstrap/bootstrap-filestyle.min']
+    jsFiles: ['lideres/equipo-modulo']
   }
   res.render('lideres/default-view', options);
 });

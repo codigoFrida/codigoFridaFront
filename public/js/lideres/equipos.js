@@ -85,13 +85,13 @@ function removeMemberEvent() {
 						titulo: 'Eliminar Frida', 
 						texto: '¿Está seguro que desea eliminar a Frida del equipo?',
 						onConfirm: () => {
-							joinMemberTeam(idUsuario, idEquipo);
+							removeMemberTeam(idUsuario, idEquipo);
 						}
 					});
 	});
 }
 
-function joinMemberTeam(idUsuario, idEquipo) {
+function removeMemberTeam(idUsuario, idEquipo) {
 	const paramsObj = {
 		url: `${localStorage.apiUrl}equipos/${idEquipo}/usuario/${idUsuario}`,
 		method: 'DELETE'

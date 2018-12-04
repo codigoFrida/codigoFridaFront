@@ -1,17 +1,12 @@
 function getModules() {
-	console.log(localStorage.apiUrl+'modulos')
 	$.get(`${localStorage.apiUrl}modulos`)
   	.done(function(data) {
   		const modulesHtml = getModulesHtml(data);
   		$('#divModulos').html(modulesHtml);
-	    console.log(data);
 	});
 }
 
 function getModulesHtml(modules) {
-	console.log(modules);
-
-
 	const modulesHtml = modules.map((module) => {
 		const { id, numero, nombreModulo, fechaLimite } = module;
 		return `<div class="col-md-6 col-lg-4 mb-4">
