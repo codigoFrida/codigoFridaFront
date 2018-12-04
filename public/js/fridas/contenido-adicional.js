@@ -29,13 +29,13 @@ function showContent(contents, $template = $('#plantillaContenido')) {
 }
 
 function setMaterialsBtn(materials) {
-	return materials.map(({urlDescarga, nombreArchivo}) => {
-			const material = {
-					urlDescarga: `${localStorage.publicUrl}materialesAdicionales/${nombreArchivo}`,
-					nombreArchivo
-			}
-			return cloneMaterialBtn(material);
-	});
+  return materials.map(({ nombre, archivo }) => {
+    const material = {
+      urlDescarga: `${localStorage.publicUrl}materialesAdicionales/${archivo}`,
+      nombreArchivo: nombre
+    }
+    return cloneMaterialBtn(material);
+  });
 }
 
 function cloneMaterialBtn(material, $template = $('#plantillaBtnMaterial')) {

@@ -15,7 +15,7 @@ $(document).ready(function() {
     callFridas();
   }).catch(error => {
     alert({texto: 'No se pudo obtener información de los equipos, inténtelo más tarde por favor'});
-    console.log(' entra error')
+    console.log(' entra error', error)
     callFridas();
   });
 });
