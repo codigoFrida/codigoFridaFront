@@ -42,13 +42,14 @@ function showContent(contents, $template = $('#plantillaContenido')) {
     submitFileEvent();
 }
 
+
 function setMaterialsBtn(materials) {
-    return materials.map(({urlDescarga, nombreArchivo}) => {
-        const material = {
-            urlDescarga: `${localStorage.publicUrl}materiales/${nombreArchivo}`,
-            nombreArchivo
-        }
-        return cloneMaterialBtn(material);
+    return materials.map(({ nombre, archivo }) => {
+      const material = {
+        urlDescarga: `${localStorage.publicUrl}materiales/${archivo}`,
+        nombreArchivo: nombre
+      }
+      return cloneMaterialBtn(material);
     });
 }
 
