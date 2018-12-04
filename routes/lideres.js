@@ -62,7 +62,7 @@ router.get('/equipos', sessionCheckerLideres, function(req, res) {
     section: 'equipos',
     headerFile: 'header',
     cssFiles: ['equipos/equipos'],
-    jsFiles: ['lideres/equipos']
+    jsFiles: ['lideres/equipos','lideres/fridas','lideres/mainEquiposFridas']
   }
   res.render('lideres/default-view', options);
 });
@@ -162,8 +162,8 @@ router.get('/equipos/:equipo', sessionCheckerLideres, function(req, res) {
     subsection: 'equipo',
     idEquipo: equipo,
     headerFile: 'header',
-    cssFiles: ['equipos/equipos'],
-    jsFiles: ['lideres/equipo/index','lideres/equipo']
+    cssFiles: ['equipos/equipos','modulo/modulos'],
+    jsFiles: ['lideres/equipo']
   }
   res.render('lideres/default-view', options);
 });
