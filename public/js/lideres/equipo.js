@@ -46,9 +46,17 @@ function showMentors(contents, $template = $('#plantillaMentor')) {
         $clonedTemplate.find('.correo').append(correo);
         return $clonedTemplate;
     });
-    $('#divMentores').append($mentors);
+		if ($.isEmptyObject($mentors)) {
+			$('#divMentores').html(`<div class="col text-center">
+				 <p>No hay Mentores registradas</p>
+			 </div>`);
+		}
+		else
+		{
+        $('#divMentores').append($mentors);
+	   }
     initFileStyle();
-}
+   }
 
 function showTeamMembers(contents, $template = $('#plantillaIntegrante')) {
     const $teamMemberTemplate = $($template.html());
@@ -61,7 +69,19 @@ function showTeamMembers(contents, $template = $('#plantillaIntegrante')) {
         $clonedTemplate.find('.edad').append(calcAge(fechaNacimiento));
         return $clonedTemplate;
     });
-    $('#divIntegrantes').append(member);
+		console.log(member);
+		if ($.isEmptyObject(member)) {
+			$('#divIntegrantes').html(
+				`<div class="col text-center">
+				   <p>No hay Fridas registradas</p>
+				 </div>`
+			);
+		}
+		else
+		{
+				$('#divIntegrantes').append(member);
+		 }
+
     initFileStyle();
 }
 
