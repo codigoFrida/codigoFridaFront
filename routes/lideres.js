@@ -35,7 +35,7 @@ router.get('/modulos', sessionCheckerLideres, function(req, res, next) {
     title: 'Lideres - Módulos',
     section: 'modulos',
     headerFile: 'header',
-    cssFiles: [],
+    cssFiles: ['modulo/modulos'],
     jsFiles: ['lideres/modulos']
   }
   res.render('lideres/default-view', options);
@@ -62,7 +62,7 @@ router.get('/equipos', sessionCheckerLideres, function(req, res, next) {
     section: 'equipos',
     headerFile: 'header',
     cssFiles: ['equipos/equipos'],
-    jsFiles: ['lideres/equipos','lideres/fridas']
+    jsFiles: ['lideres/equipos','lideres/fridas','lideres/mainEquiposFridas']
   }
   res.render('lideres/default-view', options);
 });
@@ -162,8 +162,8 @@ router.get('/equipos/:equipo', sessionCheckerLideres, function(req, res, next) {
     subsection: 'equipo',
     idEquipo: equipo,
     headerFile: 'header',
-    cssFiles: ['equipos/equipos'],
-    jsFiles: ['lideres/equipo/index','lideres/equipo']
+    cssFiles: ['equipos/equipos','modulo/modulos'],
+    jsFiles: ['lideres/equipo']
   }
   res.render('lideres/default-view', options);
 });

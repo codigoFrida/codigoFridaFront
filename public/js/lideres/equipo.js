@@ -14,10 +14,19 @@ function getTeam() {
         showMentors(team.mentores[0]);
         showTeamMembers(team.integrantes[0]);
         showAchievements(team.insignias[0]);
+				getModules();
     })
     .fail((error) => {
         console.log(error)
+				getModules();
+				alert({texto: 'No se pudo obtener información del equipo, inténtelo más tarde por favor'});
     });
+}
+function setProfileImage(imageUrl) {
+    if (imageUrl.length > 5)
+        return `${localStorage.publicUrl}img/${imageUrl}.jpg`;
+    else
+        return "/img/image.jpeg";
 }
 
 function showTeam() {
@@ -32,7 +41,7 @@ function showMentors(contents, $template = $('#plantillaMentor')) {
     const $mentors = contents.map(({nombre, apPaterno, apMaterno, correo, fotografia}, index) => {
         const $clonedTemplate = $mentorTemplate.clone();
 
-        $clonedTemplate.find('.imgPerfil').attr("src",(fotografia.length>5)?fotografia:"/img/image.jpeg");
+        $clonedTemplate.find('.imgPerfil').attr("src", setProfileImage(fotografia));
         $clonedTemplate.find('.nombre').append(`${nombre} ${apPaterno} ${apMaterno}`);
         $clonedTemplate.find('.correo').append(correo);
         return $clonedTemplate;
@@ -46,7 +55,7 @@ function showTeamMembers(contents, $template = $('#plantillaIntegrante')) {
     const member = contents.map(({nombre, apPaterno, apMaterno, correo, fotografia, fechaNacimiento}, index) => {
         const $clonedTemplate = $teamMemberTemplate.clone();
 
-        $clonedTemplate.find('.imgPerfil').attr("src",(fotografia.length>5)?fotografia:"/img/image.jpeg");
+        $clonedTemplate.find('.imgPerfil').attr("src",setProfileImage(fotografia));
         $clonedTemplate.find('.nombre').append(`${nombre} ${apPaterno} ${apMaterno}`);
         $clonedTemplate.find('.correo').append(correo);
         $clonedTemplate.find('.edad').append(calcAge(fechaNacimiento));
@@ -72,6 +81,44 @@ function showAchievements(contents, $template = $('#plantillaInsignia')) {
     });
     $('#divInsignias').append(achievement);
     initFileStyle();
+}
+
+function getModules() {
+	const paramsObj = {
+		url: `${localStorage.apiUrl}modulos?idEquipo=${ID_EQUIPO}`,
+		method: 'GET'
+	}
+	$.ajax(setRequestParams(paramsObj))
+  	.done((data) => {
+  		const modulesHtml = getModulesHtml(data);
+			console.log(data);
+  		$('#divModulos').html(modulesHtml);
+	})
+	.fail((error) => {
+		alert({texto: 'No se pudo obtener información de los módulos del equipo, inténtelo más tarde por favor'});
+		console.log(error)
+	});
+}
+
+function getModulesHtml(modules) {
+	const modulesHtml = modules.map((module) => {
+		const { id, nombreModulo, numero, fechaLimite, progreso } = module;
+		return `<div class="col-md-6 col-lg-4 mb-4">
+						<div class="card bg-light">
+							<div class="card-body">
+    						<h4 class="card-title">Módulo ${numero}</h4>
+    						<h6 class="card-subtitle mb-3">${nombreModulo}</h6>
+    						<p>Fecha límite: ${fechaLimite.substring(0,10)}</p>
+							<h6 class="card-subtitle mb-3">Avance:</h6>
+							<div class="progress mb-3">
+								<div class="progress-bar bg-success progress-bar-striped font-weight-bold" role="progressbar" style="width: ${progreso}%;" aria-valuenow="${progreso}" aria-valuemin="0" aria-valuemax="100">${progreso}%</div>
+							</div>
+    						<a href="${localStorage.baseUrl}/lideres/equipos/${ID_EQUIPO}/modulos/${id}" class="btn btn-primary btn-sm btn-block">Ver módulo</a>
+    					</div>
+    				</div>
+    			</div>`;
+	});
+	return modulesHtml.join('');
 }
 
 $(document).ready(function() {
