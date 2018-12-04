@@ -8,21 +8,23 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        <div class="row m-2">
-          <h6>Descripcion</h6>
-          <input type="text" class="form-control" name="" value="" id="txtDescripcionAgregarContenido">
-        </div>
-        <div class="row m-2">
-          <h6>Ejercicio</h6>
-          <input type="text" class="form-control" name="" value="" id="txtEjercicioAgregarContenido">
-        </div>
-        <div class="modal-footer">
-          <div class="m-2 d-flex flex-wrap justify-content-end">
-              <button id="btnAgregarContenido" type="button" class="btn btn-primary mx-2" name="button">Agregar</button>
-              <button id="btnCancelarContenido" type="button" class="btn btn-secondary" name="button" data-dismiss="modal">Cancelar</button>
+      <form id="frmAgregarContenido">
+        <div class="modal-body">
+          <div class="row m-2">
+            <h6>Descripción</h6>
+            <textarea id="inputDescripcion" rows="3" class="form-control" name="descripcion"></textarea>
           </div>
-        </div>
+          <div class="row m-2">
+            <h6>Ejercicio</h6>
+            <textarea id="inputEjercicio" rows="3" class="form-control" name="ejercicio"></textarea>
+          </div>
+          <div class="modal-footer">
+            <div class="d-flex flex-wrap justify-content-end">
+                <button id="btnAgregarContenido" type="submit" class="btn btn-primary mx-2" name="button">Agregar</button>
+                <button id="btnCancelarContenido" type="button" class="btn btn-secondary" name="button" data-dismiss="modal">Cancelar</button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
