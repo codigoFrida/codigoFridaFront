@@ -68,10 +68,10 @@ function calcAge(fechaNacimiento) {
 
 function showAchievements(contents, $template = $('#plantillaInsignia')) {
     const $achievementTemplate = $($template.html());
-    const achievement = contents.map(({nombre, descripcion, idInsignia}, index) => {
+    const achievement = contents.map(({nombre, descripcion, numeroModulo}, index) => {
         const $clonedTemplate = $achievementTemplate.clone();
 
-        $clonedTemplate.find('.imgPerfil').attr("src",`/img/insignias/modulo${idInsignia}.jpeg`);
+        $clonedTemplate.find('.imgPerfil').attr("src",`/img/insignias/modulo${numeroModulo}.jpeg`);
         $clonedTemplate.find('.nombre').append(nombre);
         $clonedTemplate.find('.descripcion').append(descripcion);
         return $clonedTemplate;

@@ -15,13 +15,14 @@ function getModules() {
 
 function getModulesHtml(modules) {
 	const modulesHtml = modules.map((module) => {
-		const { id, nombreModulo, numero, fechaLimite, progreso } = module;
+		const { id, nombreModulo, numero, fechaLimite, descripcion } = module;
 		return `<div class="col-md-6 col-lg-4 mb-4">
 						<div class="card bg-light">
 							<div class="card-body">
     						<h4 class="card-title">Módulo ${numero}</h4>
-    						<h6 class="card-subtitle mb-3">${nombreModulo}</h6>
-    						<p>Fecha límite: ${fechaLimite.substring(0,10)}</p>
+								<h6 class="card-subtitle mb-2">${nombreModulo}</h6>
+								<small class="mb-2">${descripcion}</small>
+    						<p class="mt-2">Fecha límite: ${fechaLimite.substring(0,10)}</p>
     						<a href="${localStorage.baseUrl}/lideres/modulos/${id}" class="btn btn-primary btn-sm btn-block">Ver módulo</a>
     					</div>
     				</div>
