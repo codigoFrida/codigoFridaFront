@@ -1,6 +1,5 @@
 function getFridas() {
 	return new Promise((res, rej) => {
-		console.log(localStorage.apiUrl+'usuarios')
 		const paramsObj = {
 			url: `${localStorage.apiUrl}usuarios?rol=1&equipo=0`,
 			dataObject: {}
@@ -82,7 +81,6 @@ function joinMemberTeam(idUsuario, idEquipo) {
 		dataObject: {idUsuario},
 		method: 'POST'
 	}
-	console.log(paramsObj)
 	$.ajax(setRequestParams(paramsObj))
   	.done((data) => {
 			alert({

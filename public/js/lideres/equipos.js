@@ -1,6 +1,5 @@
 function getTeams() {
 	return new Promise((res, rej) => {
-		console.log(localStorage.apiUrl+'equipos')
 		const paramsObj = {
 			url: `${localStorage.apiUrl}equipos`,
 			dataObject: {}
